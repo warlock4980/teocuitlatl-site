@@ -362,6 +362,13 @@ figcaption {
   font-size: 32px;
 }
 
+.tier-price {
+  margin-bottom: 18px;
+  color: var(--gold);
+  font-size: 24px;
+  font-weight: 950;
+}
+
 .tier-grid p,
 .partner-safe p {
   color: var(--muted);
@@ -398,6 +405,38 @@ figcaption {
   color: var(--obsidian);
 }
 
+.ambassador {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 34px;
+  align-items: start;
+  background: #121716;
+}
+
+.ambassador p {
+  max-width: 780px;
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.rules {
+  display: grid;
+  gap: 12px;
+}
+
+.rules span {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border: 1px solid rgba(247, 242, 230, 0.12);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--paper);
+  font-weight: 900;
+}
+
 .partner-safe .eyebrow {
   color: #8b651f;
 }
@@ -431,6 +470,7 @@ figcaption {
   .screens,
   .route-cards,
   .tier-grid,
+  .ambassador,
   .proof-strip {
     grid-template-columns: 1fr;
   }
