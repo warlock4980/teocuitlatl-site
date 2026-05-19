@@ -14,11 +14,17 @@
       <span></span>
       Project Mexica
     </a>
-    <nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="site-menu">
       <a href="./index.html#how">How it works</a>
       <a href="./index.html#routes">Routes</a>
       <a href="./index.html#prototype">Prototype</a>
       <a href="./gallery.html">Gallery</a>
+      <a class="mobile-menu-cta" href="mailto:partners@teocuitlatl.com?subject=Project%20Mexica%20Pilot%20Inquiry">Contact</a>
     </nav>
     <a class="nav-cta" href="mailto:partners@teocuitlatl.com?subject=Project%20Mexica%20Pilot%20Inquiry">Contact</a>
   </header>
@@ -105,5 +111,22 @@
   <footer class="site-footer">
     <p>Project Mexica is a prototype and testnet demonstration. Nothing on this site is an offer to sell securities, investment advice, financial advice, or a promise of returns. Sponsor and pilot tiers are commercial collaboration concepts only.</p>
   </footer>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteMenu = document.querySelector('#site-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    siteMenu.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+    });
+  </script>
 </body>
 </html>

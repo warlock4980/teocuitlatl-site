@@ -14,11 +14,17 @@
       <span></span>
       Project Mexica
     </a>
-    <nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="site-menu">
       <a href="./index.html#how">How it works</a>
       <a href="./index.html#routes">Routes</a>
       <a href="./index.html#prototype">Prototype</a>
       <a href="./partners.html">Partners</a>
+      <a class="mobile-menu-cta" href="#vote">Vote</a>
     </nav>
     <a class="nav-cta" href="#vote">Vote</a>
   </header>
@@ -145,6 +151,22 @@
     });
 
     applyVote(localStorage.getItem(storageKey));
+
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteMenu = document.querySelector('#site-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    siteMenu.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+    });
   </script>
 </body>
 </html>
