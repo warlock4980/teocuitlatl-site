@@ -13,6 +13,24 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
+  <div class="forge-intro" aria-hidden="true">
+    <div class="forge-stage">
+      <div class="forge-ring"></div>
+      <img class="forge-coin" src="./assets/medallions/pyramid-sun-gold.png" alt="">
+      <div class="forge-sparks">
+        <span style="--i:1"></span>
+        <span style="--i:2"></span>
+        <span style="--i:3"></span>
+        <span style="--i:4"></span>
+        <span style="--i:5"></span>
+        <span style="--i:6"></span>
+        <span style="--i:7"></span>
+        <span style="--i:8"></span>
+      </div>
+      <p>Teocuitlatl is forged</p>
+    </div>
+  </div>
+
   <header class="nav">
     <a class="brand" href="#">
       <span></span>
@@ -161,5 +179,10 @@
   <footer class="site-footer">
     <p>Project Mexica is a prototype and testnet demonstration. Nothing on this site is an offer to sell securities, investment advice, financial advice, or a promise of returns. TOM, TEO, MIC, and CEN are presented here as product concepts and testnet/demo assets.</p>
   </footer>
+  <script>
+    window.setTimeout(() => {
+      document.body.classList.add('intro-complete');
+    }, 2800);
+  </script>
 </body>
 </html>
