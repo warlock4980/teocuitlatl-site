@@ -295,6 +295,57 @@ figcaption {
   color: var(--gold);
 }
 
+.collectibles {
+  background:
+    radial-gradient(circle at 18% 20%, rgba(226, 182, 70, 0.15), transparent 26%),
+    radial-gradient(circle at 80% 32%, rgba(49, 196, 198, 0.1), transparent 24%),
+    #0d1212;
+}
+
+.medallions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 38px;
+}
+
+.medallions article {
+  overflow: hidden;
+  border: 1px solid rgba(247, 242, 230, 0.12);
+  border-radius: 12px;
+  background: var(--surface);
+}
+
+.medallions img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 0.82;
+  object-fit: cover;
+}
+
+.medallions div {
+  padding: 28px;
+}
+
+.medallions span {
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.medallions h3 {
+  margin: 12px 0 10px;
+  font-size: 32px;
+}
+
+.medallions p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
 .partners {
   display: flex;
   align-items: center;
@@ -469,6 +520,7 @@ figcaption {
   .steps,
   .screens,
   .route-cards,
+  .medallions,
   .tier-grid,
   .ambassador,
   .proof-strip {
