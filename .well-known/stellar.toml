@@ -15,7 +15,7 @@ issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
 display_decimals=2
 name="Mexica Tomin"
 desc="The Digital Peso of the Mexica. A stable, peso-pegged currency designed for toll booths, gas stations, and daily commerce across Mexico."
-conditions="Fixed peg 1:1 to MXN. Managed by the Project Mexica Reserve."
+conditions="Prototype/testnet asset. Not offered as an investment or promise of redemption."
 image="https://teocuitlatl.com/assets/tom_logo.png"
 
 [[CURRENCIES]]
@@ -23,8 +23,8 @@ code="TEO"
 issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
 display_decimals=7
 name="Coztic Teocuitlatl"
-desc="The Divine Gold of the Mexica. A rare reward asset earned through movement and route challenges."
-conditions="Limited supply of 10,000,000. Earned via El Camino de Teo geo-mining."
+desc="A testnet reward asset concept earned through movement and route challenges."
+conditions="Prototype/testnet asset. Not offered as an investment or promise of returns."
 image="https://teocuitlatl.com/assets/teo_gold.png"
 
 [[CURRENCIES]]
