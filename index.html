@@ -13,24 +13,6 @@
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <div class="forge-intro" aria-hidden="true">
-    <div class="forge-stage">
-      <div class="forge-ring"></div>
-      <img class="forge-coin" src="./assets/medallions/pyramid-sun-gold.png" alt="">
-      <div class="forge-sparks">
-        <span style="--i:1"></span>
-        <span style="--i:2"></span>
-        <span style="--i:3"></span>
-        <span style="--i:4"></span>
-        <span style="--i:5"></span>
-        <span style="--i:6"></span>
-        <span style="--i:7"></span>
-        <span style="--i:8"></span>
-      </div>
-      <p>Teocuitlatl is forged</p>
-    </div>
-  </div>
-
   <header class="nav">
     <a class="brand" href="#">
       <span></span>
@@ -40,6 +22,7 @@
       <a href="#how">How it works</a>
       <a href="#routes">Routes</a>
       <a href="#prototype">Prototype</a>
+      <a href="./gallery.html">Gallery</a>
     </nav>
     <a class="nav-cta" href="./partners.html">Partner with us</a>
   </header>
@@ -48,15 +31,22 @@
     <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Stable payments + route rewards</p>
-        <h1>No solo pagues. Descubre.</h1>
-        <p class="lede">A testnet prototype for payment flows, digital reward concepts, and proof badges tied to real places across Mexico.</p>
+        <h1>No solo<br>pagues.<br>Descubre.</h1>
+        <p class="lede">A Mexico-born prototype for payment flows, digital reward concepts, and proof badges tied to real places, built with global ambition.</p>
         <div class="hero-actions">
           <a class="primary" href="#prototype">View prototype</a>
           <a class="secondary" href="#routes">Explore routes</a>
         </div>
       </div>
       <div class="hero-shot">
-        <img src="./assets/screenshots/wallet.png" alt="Prototype WhatsApp wallet screen">
+        <div class="hero-product">
+          <img src="./assets/hero/forge-coin-cutout.png" alt="Teocuitlatl Pyramid of the Sun medallion concept">
+        </div>
+        <div class="hero-product-caption">
+          <span>Future Collectible Concept</span>
+          <strong>Teocuitlatl Pyramid of the Sun</strong>
+          <p>Commemorative medallion concept art. Not legal tender, not for sale, and not an investment product.</p>
+        </div>
       </div>
     </section>
 
@@ -180,9 +170,19 @@
     <p>Project Mexica is a prototype and testnet demonstration. Nothing on this site is an offer to sell securities, investment advice, financial advice, or a promise of returns. TOM, TEO, MIC, and CEN are presented here as product concepts and testnet/demo assets.</p>
   </footer>
   <script>
-    window.setTimeout(() => {
-      document.body.classList.add('intro-complete');
-    }, 2800);
+    const root = document.documentElement;
+
+    window.addEventListener('scroll', () => {
+      const max = Math.max(1, document.body.scrollHeight - window.innerHeight);
+      root.style.setProperty('--scroll-progress', Math.min(1, window.scrollY / max).toFixed(4));
+    }, { passive: true });
+
+    window.addEventListener('pointermove', event => {
+      const x = (event.clientX / window.innerWidth - 0.5).toFixed(4);
+      const y = (event.clientY / window.innerHeight - 0.5).toFixed(4);
+      root.style.setProperty('--pointer-x', x);
+      root.style.setProperty('--pointer-y', y);
+    }, { passive: true });
   </script>
 </body>
 </html>

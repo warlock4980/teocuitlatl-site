@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Mexica Medallion Gallery</title>
+  <meta name="description" content="Vote for your favorite Project Mexica commemorative medallion concept.">
+  <link rel="canonical" href="https://teocuitlatl.com/gallery.html">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="./index.html">
+      <span></span>
+      Project Mexica
+    </a>
+    <nav>
+      <a href="./index.html#how">How it works</a>
+      <a href="./index.html#routes">Routes</a>
+      <a href="./index.html#prototype">Prototype</a>
+      <a href="./partners.html">Partners</a>
+    </nav>
+    <a class="nav-cta" href="#vote">Vote</a>
+  </header>
+
+  <main>
+    <section class="gallery-hero">
+      <p class="eyebrow">Concept Gallery</p>
+      <h1>Choose the medallion people will fall in love with.</h1>
+      <p class="lede">These commemorative concepts explore routes, history, science, and nostalgia. Vote for the one that should define the first proof set.</p>
+    </section>
+
+    <section id="vote" class="section gallery-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Crowd Favorite</p>
+          <h2>Pick one. Let the people speak.</h2>
+        </div>
+        <p>This first poll is a prototype stored in your browser. Public voting can be wired to Neon when we launch the real campaign.</p>
+      </div>
+
+      <div class="poll-status" id="pollStatus">No vote yet. Choose your favorite concept.</div>
+
+      <div class="coin-grid" id="coinGrid">
+        <article data-coin="patzcuaro">
+          <img src="./assets/gallery/patzcuaro-janitzio.png" alt="Lago de Patzcuaro Janitzio El Mirador medallion">
+          <div>
+            <span>MIC Route</span>
+            <h3>Lago de Patzcuaro</h3>
+            <p>Janitzio, El Mirador, butterfly fishermen, flowers, route dots, and lake nostalgia.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="cenote">
+          <img src="./assets/gallery/cenote-cancun.png" alt="Cenote Cancun Adventure medallion">
+          <div>
+            <span>CEN Route</span>
+            <h3>Cenote Cancun Adventure</h3>
+            <p>Turquoise cenotes, jungle, Pakal-style detail, lighthouse, ruins, and route markers.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="sun">
+          <img src="./assets/gallery/sun-gold-detailed.png" alt="Pyramid of the Sun gold medallion">
+          <div>
+            <span>Teotihuacan</span>
+            <h3>Pyramid of the Sun</h3>
+            <p>Gold proof concept with sunrise relief and Teocuitlatl founder energy.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="moon">
+          <img src="./assets/gallery/moon-silver.png" alt="Pyramid of the Moon silver medallion">
+          <div>
+            <span>Teotihuacan</span>
+            <h3>Pyramid of the Moon</h3>
+            <p>Silver companion piece with lunar atmosphere and a cooler proof-set tone.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="septiembre">
+          <img src="./assets/gallery/septiembre-libertad.png" alt="16 de Septiembre Camino de Libertad medallion">
+          <div>
+            <span>Heritage</span>
+            <h3>16 de Septiembre</h3>
+            <p>Independence-era symbolism, torchlight, bell, sunrise, and Camino de Libertad.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="zapata">
+          <img src="./assets/gallery/zapata-legacy.png" alt="Zapata Legacy Tierra y Camino medallion">
+          <div>
+            <span>Heritage</span>
+            <h3>Zapata Legacy</h3>
+            <p>Maize, land, mountain, horse, and Tierra y Camino folk-hero energy.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+
+        <article data-coin="alcubierre">
+          <img src="./assets/gallery/alcubierre-drive.png" alt="Alcubierre Drive science medallion">
+          <div>
+            <span>Science</span>
+            <h3>Alcubierre Drive</h3>
+            <p>Mexican scientific imagination, starship, warped spacetime, and Ciencia y Camino.</p>
+            <button type="button">Vote for this</button>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>These are commemorative concept images only. They are not legal tender, not for sale, and not investment products. Project Mexica is a prototype/testnet demonstration.</p>
+  </footer>
+
+  <script>
+    const storageKey = 'project-mexica-gallery-vote';
+    const status = document.getElementById('pollStatus');
+    const cards = [...document.querySelectorAll('[data-coin]')];
+
+    function applyVote(value) {
+      cards.forEach(card => {
+        const selected = card.dataset.coin === value;
+        card.classList.toggle('selected', selected);
+        card.querySelector('button').textContent = selected ? 'Your pick' : 'Vote for this';
+      });
+
+      const selectedCard = cards.find(card => card.dataset.coin === value);
+      status.textContent = selectedCard
+        ? `Your current favorite: ${selectedCard.querySelector('h3').textContent}.`
+        : 'No vote yet. Choose your favorite concept.';
+    }
+
+    cards.forEach(card => {
+      card.querySelector('button').addEventListener('click', () => {
+        localStorage.setItem(storageKey, card.dataset.coin);
+        applyVote(card.dataset.coin);
+      });
+    });
+
+    applyVote(localStorage.getItem(storageKey));
+  </script>
+</body>
+</html>
