@@ -1,0 +1,52 @@
+# Project Mexica: Stellar Branding Configuration
+# Host this at https://teocuitlatl.com/.well-known/stellar.toml
+
+NETWORK_PASSPHRASE="Test SDF Network ; September 2015"
+
+[QUORUM_SET]
+THRESHOLD_PERCENT=67
+VALIDATORS=[
+    "GABMKJM6IAH7QH7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H7H",
+]
+
+[[CURRENCIES]]
+code="TOM"
+issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
+display_decimals=2
+name="Mexica Tomin"
+desc="The Digital Peso of the Mexica. A stable, peso-pegged currency designed for toll booths, gas stations, and daily commerce across Mexico."
+conditions="Fixed peg 1:1 to MXN. Managed by the Project Mexica Reserve."
+image="https://teocuitlatl.com/assets/tom_logo.png"
+
+[[CURRENCIES]]
+code="TEO"
+issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
+display_decimals=7
+name="Coztic Teocuitlatl"
+desc="The Divine Gold of the Mexica. A rare reward asset earned through movement and route challenges."
+conditions="Limited supply of 10,000,000. Earned via El Camino de Teo geo-mining."
+image="https://teocuitlatl.com/assets/teo_gold.png"
+
+[[CURRENCIES]]
+code="MIC"
+issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
+display_decimals=0
+name="Insignia de Michoacan"
+desc="Proof badge for completing the Michoacan / Lake Patzcuaro challenge."
+conditions="Proof-of-presence badge. Not marketed as an investment."
+image="https://teocuitlatl.com/assets/michoacan_badge.png"
+
+[[CURRENCIES]]
+code="CEN"
+issuer="GBN7OUG6O6NZIP7D44IATRLNDS7BPQ6DL2EHPZJGTJX6BEETC5R4BKES"
+display_decimals=0
+name="Cenote Cancun Adventure"
+desc="Proof badge for completing the cenote and landmark adventure near Cancun and Puerto Morelos."
+conditions="Proof-of-presence badge. Not marketed as an investment."
+image="https://teocuitlatl.com/assets/cenote_cancun_adventure.png"
+
+[DOCUMENTATION]
+ORG_NAME="Project Mexica"
+ORG_URL="https://teocuitlatl.com"
+ORG_DESCRIPTION="Stable payments, digital gold rewards, and proof badges for real places across Mexico."
+ORG_OFFICIAL_EMAIL="partners@teocuitlatl.com"
