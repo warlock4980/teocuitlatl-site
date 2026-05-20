@@ -977,9 +977,10 @@ figcaption {
   width: min(100%, 340px);
   aspect-ratio: 1;
   display: block;
-  padding: 14px;
-  border-radius: 8px;
-  background: #ffffff;
+  padding: 0;
+  border-radius: 50%;
+  background: transparent;
+  filter: drop-shadow(0 26px 42px rgba(0, 0, 0, 0.38));
 }
 
 .tip-qr figcaption {

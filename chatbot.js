@@ -45,6 +45,10 @@
       text: "The heritage medallions are commemorative concept art: Tenochtitlán shows the lake city at full scale, while Moctezuma is framed as a dignified ruler motif. They are not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
+      keys: ["juarez", "juárez", "benito", "angel", "ángel", "independence", "eagle", "serpent", "snake", "nopal", "flag"],
+      text: "The newer heritage concepts include Benito Juárez, Ángel de la Independencia, and Águila y Nopal. They are commemorative medallion art only, not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
+    },
+    {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
       text: "Important: this is a prototype/testnet demonstration. Nothing here is investment advice, a securities offer, a promise of returns, legal tender, or a public token sale."
     },
@@ -90,6 +94,10 @@
     {
       keys: ["moneda", "medallón", "medallon", "galería", "galeria", "votar", "sol", "luna", "plata", "oro"],
       text: "El arte de monedas es arte conceptual conmemorativo. La firma visual es Sol y Luna, con conceptos como Tenochtitlán y Moctezuma en la galería. Vota aquí: https://teocuitlatl.com/es/gallery.html"
+    },
+    {
+      keys: ["juarez", "juárez", "benito", "angel", "ángel", "independencia", "águila", "aguila", "serpiente", "nopal", "bandera"],
+      text: "Los nuevos conceptos patrimoniales incluyen Benito Juárez, Ángel de la Independencia y Águila y Nopal. Son arte conmemorativo de medallón, no moneda de curso legal ni producto de inversión. Vota aquí: https://teocuitlatl.com/es/gallery.html"
     },
     {
       keys: ["legal", "inversión", "inversion", "comprar", "venta", "ganancias", "rendimiento", "retornos"],
