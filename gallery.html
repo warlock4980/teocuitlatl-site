@@ -43,7 +43,7 @@
           <p class="eyebrow">Crowd Favorite</p>
           <h2>Pick your top three. Let the people speak.</h2>
         </div>
-        <p>This first poll is a prototype stored in your browser. Public voting can be wired to Neon when we launch the real campaign. Five more medallion concepts are planned for the next drop.</p>
+        <p>The gallery is ready for a live Neon-backed public tally. Until the API endpoint is connected, votes stay safely on this device. Five more medallion concepts are planned for the next drop.</p>
       </div>
 
       <div class="poll-status" id="pollStatus">No picks yet. Choose up to three concepts.</div>
@@ -134,6 +134,7 @@
     const maxPicks = 3;
     const pollApiUrl = window.MEXICA_POLL_API_URL || '/api/poll';
     let latestResults = null;
+    let pollIsLive = false;
 
     function readPicks() {
       try {
@@ -169,14 +170,15 @@
       });
 
       if (!picks.length) {
-        status.textContent = 'No picks yet. Choose up to three concepts.';
+        status.textContent = `${pollIsLive ? 'Live poll connected.' : 'No picks yet.'} Choose up to three concepts.`;
         return;
       }
 
       const names = picks
         .map(value => cards.find(card => card.dataset.coin === value)?.querySelector('h3')?.textContent)
         .filter(Boolean);
-      status.textContent = `Your top ${names.length}: ${names.join(' + ')}. ${maxPicks - names.length} pick${maxPicks - names.length === 1 ? '' : 's'} left.${resultSummary()}`;
+      const saveMode = pollIsLive ? 'Saved to the live tally.' : 'Saved on this device.';
+      status.textContent = `Your top ${names.length}: ${names.join(' + ')}. ${maxPicks - names.length} pick${maxPicks - names.length === 1 ? '' : 's'} left. ${saveMode}${resultSummary()}`;
     }
 
     async function loadResults() {
@@ -184,6 +186,7 @@
         const response = await fetch(pollApiUrl, { headers: { Accept: 'application/json' } });
         if (!response.ok) return;
         const data = await response.json();
+        pollIsLive = true;
         latestResults = data.results || null;
         applyVote(readPicks());
       } catch {
@@ -200,6 +203,7 @@
         });
         if (!response.ok) return;
         const data = await response.json();
+        pollIsLive = true;
         latestResults = data.results || latestResults;
         applyVote(picks);
       } catch {

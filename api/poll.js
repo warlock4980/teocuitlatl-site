@@ -39,11 +39,21 @@ async function ensureSchema(sql) {
   await sql`
     create table if not exists coin_poll_votes (
       id bigserial primary key,
+      voter_hash text,
       picks text[] not null,
       user_agent_hash text,
       referer text,
       created_at timestamptz not null default now()
     )
+  `;
+  await sql`
+    alter table coin_poll_votes
+      add column if not exists voter_hash text
+  `;
+  await sql`
+    create unique index if not exists coin_poll_votes_voter_hash_idx
+      on coin_poll_votes (voter_hash)
+      where voter_hash is not null
   `;
 }
 
@@ -90,13 +100,25 @@ export default async function handler(req, res) {
     return;
   }
 
+  const visitorFingerprint = [
+    req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "",
+    req.headers["user-agent"] || ""
+  ].join("|");
+
   await sql`
-    insert into coin_poll_votes (picks, user_agent_hash, referer)
+    insert into coin_poll_votes (voter_hash, picks, user_agent_hash, referer)
     values (
+      ${hash(visitorFingerprint)},
       ${picks},
       ${hash(req.headers["user-agent"] || "")},
       ${(req.headers.referer || "").slice(0, 500)}
     )
+    on conflict (voter_hash) where voter_hash is not null
+    do update set
+      picks = excluded.picks,
+      user_agent_hash = excluded.user_agent_hash,
+      referer = excluded.referer,
+      created_at = now()
   `;
 
   res.status(200).json({ ok: true, picks, results: await getResults(sql) });
