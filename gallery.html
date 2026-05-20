@@ -132,7 +132,7 @@
     const status = document.getElementById('pollStatus');
     const cards = [...document.querySelectorAll('[data-coin]')];
     const maxPicks = 3;
-    const pollApiUrl = window.MEXICA_POLL_API_URL || '/api/poll';
+    const pollApiUrl = window.MEXICA_POLL_API_URL || 'https://teocuitlatl-poll-api.vercel.app/api/poll';
     let latestResults = null;
     let pollIsLive = false;
 

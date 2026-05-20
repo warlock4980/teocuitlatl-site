@@ -10,6 +10,12 @@ The safe flow is:
 
 Gallery page -> `/api/poll` -> Neon
 
+Current deployed API:
+
+```text
+https://teocuitlatl-poll-api.vercel.app/api/poll
+```
+
 ## Files
 
 - `api/poll.js`: serverless poll endpoint.
@@ -80,8 +86,8 @@ Recommended first deployment:
 1. Create a Neon project and copy the pooled `DATABASE_URL`.
 2. Deploy this repo to Vercel.
 3. Add `DATABASE_URL` and `ALLOWED_ORIGINS` in the Vercel project environment variables.
-4. Test `https://your-vercel-app.vercel.app/api/health`.
-5. Set the gallery API URL to `https://your-vercel-app.vercel.app/api/poll`.
+4. Test `https://teocuitlatl-poll-api.vercel.app/api/health`.
+5. The gallery is already pointed at `https://teocuitlatl-poll-api.vercel.app/api/poll`.
 
 ## Current Blocker
 
