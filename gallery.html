@@ -34,27 +34,27 @@
 
   <main>
     <section class="gallery-hero">
-      <p class="eyebrow">Concept Gallery</p>
-      <h1>Choose the medallion people will fall in love with.</h1>
-      <p class="lede">These commemorative concepts explore routes, history, science, and nostalgia. Pick your top three now; more concepts are planned for the next drop.</p>
+      <p class="eyebrow">Artifact Gallery</p>
+      <h1>Choose the medallion that feels worthy of a vault.</h1>
+      <p class="lede">These commemorative studies explore routes, history, science, and memory through a Teōcuitlatl lens. Pick your top three now; more concepts are planned for the next drop.</p>
     </section>
 
     <section id="vote" class="section gallery-section">
       <div class="section-head">
         <div>
           <p class="eyebrow">Crowd Favorite</p>
-          <h2>Pick your top three. Let the people speak.</h2>
+          <h2>Pick your top three. Let the collection reveal itself.</h2>
         </div>
-        <p>The gallery is ready for a live Neon-backed public tally. Until the API endpoint is connected, votes stay safely on this device. More medallion concepts are planned for the next drop.</p>
+        <p>The gallery is ready for a live Neon-backed public tally. Until the API endpoint is connected, votes stay safely on this device. More medallion studies are planned for the next drop.</p>
       </div>
 
-      <div class="poll-status" id="pollStatus">No picks yet. Choose up to three concepts.</div>
+      <div class="poll-status" id="pollStatus">No picks yet. Choose up to three medallion studies.</div>
       <p class="privacy-note">Voting stores your selected medallions in this browser. When the live tally is connected, the poll API will also store your picks, basic technical request data, and a hashed visitor fingerprint to reduce duplicate votes. See the <a href="./privacy.html">Privacy Notice</a>.</p>
       <button class="poll-reset" id="resetPoll" type="button">Reset my vote</button>
 
       <div class="coin-grid" id="coinGrid">
         <article data-coin="patzcuaro">
-          <img src="./assets/gallery/patzcuaro-janitzio.png" alt="Lake Pátzcuaro Janitzio El Mirador medallion">
+          <div class="coin-art"><img src="./assets/gallery/patzcuaro-janitzio.png" alt="Lake Pátzcuaro Janitzio El Mirador medallion"></div>
           <div>
             <span>MIC Route</span>
             <h3>Lake Pátzcuaro</h3>
@@ -64,7 +64,7 @@
         </article>
 
         <article data-coin="cenote">
-          <img src="./assets/gallery/cenote-cancun.png" alt="Cancún Cenote Adventure medallion">
+          <div class="coin-art"><img src="./assets/gallery/cenote-cancun.png" alt="Cancún Cenote Adventure medallion"></div>
           <div>
             <span>CEN Route</span>
             <h3>Cancún Cenote Adventure</h3>
@@ -74,17 +74,17 @@
         </article>
 
         <article data-coin="sun">
-          <img src="./assets/gallery/sun-gold-detailed.png" alt="Pyramid of the Sun gold medallion">
+          <div class="coin-art"><img src="./assets/gallery/sun-gold-detailed.png" alt="Pyramid of the Sun gold medallion"></div>
           <div>
             <span>Teotihuacán</span>
             <h3>Pyramid of the Sun</h3>
-            <p>Gold proof concept with sunrise relief and Teōcuitlatl founder energy.</p>
+            <p>Gold proof study with sunrise relief and Teōcuitlatl founder presence.</p>
             <button type="button">Vote for this</button>
           </div>
         </article>
 
         <article data-coin="moon">
-          <img src="./assets/gallery/moon-silver.png" alt="Pyramid of the Moon silver medallion">
+          <div class="coin-art"><img src="./assets/gallery/moon-silver.png" alt="Pyramid of the Moon silver medallion"></div>
           <div>
             <span>Teotihuacán</span>
             <h3>Pyramid of the Moon</h3>
@@ -94,7 +94,7 @@
         </article>
 
         <article data-coin="tenochtitlan">
-          <img src="./assets/gallery/tenochtitlan-gold.png" alt="Tenochtitlán gold medallion concept">
+          <div class="coin-art"><img src="./assets/gallery/tenochtitlan-gold.png" alt="Tenochtitlán gold medallion concept"></div>
           <div>
             <span>Heritage Proof</span>
             <h3>Tenochtitlán</h3>
@@ -104,7 +104,7 @@
         </article>
 
         <article data-coin="moctezuma">
-          <img src="./assets/gallery/moctezuma-gold.png" alt="Moctezuma gold medallion concept">
+          <div class="coin-art"><img src="./assets/gallery/moctezuma-gold.png" alt="Moctezuma gold medallion concept"></div>
           <div>
             <span>Heritage Proof</span>
             <h3>Moctezuma</h3>
@@ -114,7 +114,7 @@
         </article>
 
         <article data-coin="juarez">
-          <img src="./assets/gallery/benito-juarez-gold.png" alt="Benito Juárez gold medallion concept">
+          <div class="coin-art"><img src="./assets/gallery/benito-juarez-gold.png" alt="Benito Juárez gold medallion concept"></div>
           <div>
             <span>Heritage</span>
             <h3>Benito Juárez</h3>
@@ -124,17 +124,17 @@
         </article>
 
         <article data-coin="angel">
-          <img src="./assets/gallery/angel-independencia-gold.png" alt="Ángel de la Independencia gold medallion concept">
+          <div class="coin-art"><img src="./assets/gallery/angel-independencia-gold.png" alt="Ángel de la Independencia gold medallion concept"></div>
           <div>
             <span>Mexico City</span>
             <h3>Ángel de la Independencia</h3>
-            <p>Paseo de la Reforma, winged victory, laurel, sunrise rays, and a monument made for gold.</p>
+            <p>Paseo de la Reforma, Winged Victory, laurel, sunrise rays, and a monument made for gold relief.</p>
             <button type="button">Vote for this</button>
           </div>
         </article>
 
         <article data-coin="aguila">
-          <img src="./assets/gallery/aguila-nopal-gold.png" alt="Mexican eagle and serpent gold medallion concept">
+          <div class="coin-art"><img src="./assets/gallery/aguila-nopal-gold.png" alt="Mexican eagle and serpent gold medallion concept"></div>
           <div>
             <span>National Emblem</span>
             <h3>Eagle and Nopal</h3>
@@ -144,7 +144,7 @@
         </article>
 
         <article data-coin="septiembre">
-          <img src="./assets/gallery/septiembre-libertad.png" alt="September 16 Road to Freedom medallion">
+          <div class="coin-art"><img src="./assets/gallery/septiembre-libertad.png" alt="September 16 Road to Freedom medallion"></div>
           <div>
             <span>Heritage</span>
             <h3>September 16</h3>
@@ -154,7 +154,7 @@
         </article>
 
         <article data-coin="zapata">
-          <img src="./assets/gallery/zapata-legacy.png" alt="Zapata Legacy Land and Road medallion">
+          <div class="coin-art"><img src="./assets/gallery/zapata-legacy.png" alt="Zapata Legacy Land and Road medallion"></div>
           <div>
             <span>Heritage</span>
             <h3>Zapata Legacy</h3>
@@ -164,7 +164,7 @@
         </article>
 
         <article data-coin="alcubierre">
-          <img src="./assets/gallery/alcubierre-drive.png" alt="Alcubierre Drive science medallion">
+          <div class="coin-art"><img src="./assets/gallery/alcubierre-drive.png" alt="Alcubierre Drive science medallion"></div>
           <div>
             <span>Science</span>
             <h3>Alcubierre Drive</h3>
