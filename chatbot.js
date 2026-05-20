@@ -64,20 +64,40 @@
   }
 
   function appendLinkedText(node, text) {
-    const pattern = /(https?:\/\/[^\s]+|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi;
+    const pattern = /(\*\*[^*\n][\s\S]*?[^*\n]\*\*|https?:\/\/[^\s]+|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi;
     let index = 0;
     let match;
+
+    function appendFormatted(raw) {
+      if (raw.startsWith("**") && raw.endsWith("**")) {
+        const strongText = raw.slice(2, -2).trim();
+        if (strongText) {
+          const strong = document.createElement("strong");
+          strong.textContent = strongText;
+          node.append(strong);
+        }
+        return;
+      }
+
+      node.append(document.createTextNode(raw));
+    }
 
     while ((match = pattern.exec(text))) {
       const raw = match[0];
       const start = match.index;
-      const clean = raw.replace(/[.,!?;:)\]]+$/g, "");
-      const trailing = raw.slice(clean.length);
 
       if (start > index) {
         node.append(document.createTextNode(text.slice(index, start)));
       }
 
+      if (raw.startsWith("**")) {
+        appendFormatted(raw);
+        index = start + raw.length;
+        continue;
+      }
+
+      const clean = raw.replace(/[.,!?;:)\]]+$/g, "");
+      const trailing = raw.slice(clean.length);
       const link = document.createElement("a");
       link.textContent = clean;
       link.href = clean.includes("@") && !clean.startsWith("http") ? `mailto:${clean}` : clean;
