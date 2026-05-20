@@ -479,3 +479,9 @@
     transform: none;
   }
 }
+
+/* LLM-fallback thinking state — shown briefly before stream begins. */
+.mexica-msg.thinking {
+  font-style: italic;
+  opacity: 0.62;
+}

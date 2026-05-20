@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "check": "node --check chatbot.js && node --check api/poll.js"
+    "check": "node --check chatbot.js && node --check api/poll.js && node --check api/chat.js && node --check api/health.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.2"

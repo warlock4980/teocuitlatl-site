@@ -57,6 +57,17 @@ async function ensureSchema(sql) {
       on coin_poll_votes (voter_hash)
       where voter_hash is not null
   `;
+  // chat_log is owned by api/chat.js but recreated here so DELETE can clear
+  // both surfaces with one Reset action, even if the user has never chatted.
+  await sql`
+    create table if not exists chat_log (
+      id bigserial primary key,
+      voter_hash text,
+      message text not null,
+      response_excerpt text,
+      created_at timestamptz not null default now()
+    )
+  `;
 }
 
 async function getResults(sql) {
@@ -101,13 +112,20 @@ export default async function handler(req, res) {
   }
 
   if (req.method === "DELETE") {
-    const deleted = await sql`
+    const voterHash = getVoterHash(req);
+    const deletedVotes = await sql`
       delete from coin_poll_votes
-      where voter_hash = ${getVoterHash(req)}
+      where voter_hash = ${voterHash}
       returning id
     `;
+    // Right-to-deletion also clears chatbot log for the same hashed visitor.
+    // Disclosed in privacy.html under "Chatbot."
+    await sql`
+      delete from chat_log
+      where voter_hash = ${voterHash}
+    `;
 
-    res.status(200).json({ ok: true, deleted: deleted.length, results: await getResults(sql) });
+    res.status(200).json({ ok: true, deleted: deletedVotes.length, results: await getResults(sql) });
     return;
   }
 

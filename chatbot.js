@@ -1,4 +1,6 @@
 (() => {
+  const chatApiUrl = window.MEXICA_CHAT_API_URL || "https://teocuitlatl-poll-api.vercel.app/api/chat";
+
   const responses = [
     {
       keys: ["tom", "payment", "pay", "stable", "peso"],
@@ -58,7 +60,7 @@
     const text = message.toLowerCase();
     const match = responses.find(item => item.keys.some(key => text.includes(key)));
     if (match) return match.text;
-    return "I can help with TOM, TEO, proof badges, the Michoacán route, the Cenote Cancún Adventure, medallion concepts, and partner pilots. For direct questions, email hola@teocuitlatl.com.";
+    return null; // no FAQ match — caller falls through to /api/chat LLM endpoint
   }
 
   function appendLinkedText(node, text) {
@@ -181,13 +183,93 @@
       launcher.focus();
     }
 
-    function send(text) {
+    async function send(text) {
       const trimmed = text.trim();
       if (!trimmed) return;
       body.append(createMessage("user", trimmed));
-      body.append(createMessage("bot", findReply(trimmed)));
       input.value = "";
       scrollToBottom(body);
+
+      const ruleReply = findReply(trimmed);
+      if (ruleReply !== null) {
+        body.append(createMessage("bot", ruleReply));
+        scrollToBottom(body);
+        return;
+      }
+
+      // No FAQ match — fall through to LLM endpoint with streaming response.
+      const thinkingMsg = createMessage("bot", "thinking…");
+      thinkingMsg.classList.add("thinking");
+      body.append(thinkingMsg);
+      scrollToBottom(body);
+
+      const fallbackText = "Sorry — the guide is unreachable right now. For direct questions, email hola@teocuitlatl.com.";
+
+      try {
+        const response = await fetch(chatApiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: trimmed })
+        });
+
+        if (!response.ok || !response.body) {
+          thinkingMsg.classList.remove("thinking");
+          thinkingMsg.replaceChildren();
+          appendLinkedText(thinkingMsg, fallbackText);
+          scrollToBottom(body);
+          return;
+        }
+
+        thinkingMsg.classList.remove("thinking");
+        thinkingMsg.replaceChildren();
+
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        let accumulated = "";
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          let lineEnd;
+          while ((lineEnd = buffer.indexOf("\n")) !== -1) {
+            const line = buffer.slice(0, lineEnd).trim();
+            buffer = buffer.slice(lineEnd + 1);
+            if (!line.startsWith("data:")) continue;
+            const payload = line.slice(5).trim();
+            if (payload === "[DONE]") return;
+            try {
+              const json = JSON.parse(payload);
+              if (json.error) {
+                thinkingMsg.replaceChildren();
+                appendLinkedText(thinkingMsg, fallbackText);
+                scrollToBottom(body);
+                return;
+              }
+              if (json.token) {
+                accumulated += json.token;
+                thinkingMsg.replaceChildren();
+                appendLinkedText(thinkingMsg, accumulated);
+                scrollToBottom(body);
+              }
+            } catch {
+              // Ignore non-JSON payload chunks (keep-alives, comments).
+            }
+          }
+        }
+
+        if (!accumulated) {
+          thinkingMsg.replaceChildren();
+          appendLinkedText(thinkingMsg, fallbackText);
+          scrollToBottom(body);
+        }
+      } catch (err) {
+        thinkingMsg.classList.remove("thinking");
+        thinkingMsg.replaceChildren();
+        appendLinkedText(thinkingMsg, fallbackText);
+        scrollToBottom(body);
+      }
     }
 
     prompts.forEach(prompt => {

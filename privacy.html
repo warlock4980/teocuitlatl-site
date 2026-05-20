@@ -55,7 +55,16 @@
 
       <article>
         <h2>Chatbot</h2>
-        <p>The site chatbot is a static guide with prepared responses. It does not require an account and does not ask for seed phrases, wallet secrets, passwords, government IDs, or payment credentials.</p>
+        <p>The site chatbot answers most questions from a built-in FAQ that runs entirely in your browser. For questions the built-in FAQ does not cover, your message is sent to a third-party language-model provider over an encrypted connection to generate a reply. The reply is shown to you and is not displayed to other visitors.</p>
+        <p>When the language-model fallback is used, the chatbot API may also store, on our Neon database:</p>
+        <ul>
+          <li>The text of your message (only when it falls through to the language model).</li>
+          <li>A short excerpt of the reply that was shown to you.</li>
+          <li>A hashed visitor fingerprint derived from technical request data &mdash; the same hash used for the medallion poll, so a single reset clears both.</li>
+          <li>The date and time of the exchange.</li>
+        </ul>
+        <p>The chatbot does not require an account and does not ask for seed phrases, wallet secrets, passwords, government IDs, or payment credentials. Please do not paste sensitive personal information into chatbot messages.</p>
+        <p>To remove your chatbot history along with your poll data, visit the <a href="./gallery.html#vote">gallery poll</a> and click <strong>Reset my vote</strong>. This clears the records tied to your current hashed visitor fingerprint on both the poll and the chatbot log.</p>
       </article>
 
       <article>
