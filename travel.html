@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mexico Travel Hub | Project Mexica</title>
+  <meta name="description" content="Explore Mexico routes, heritage sites, cenotes, airports, and proof-badge travel concepts on the Project Mexica travel map.">
+  <link rel="canonical" href="https://teocuitlatl.com/travel.html">
+  <meta property="og:title" content="Mexico Travel Hub | Project Mexica">
+  <meta property="og:description" content="A detailed map of Mexico routes, landmarks, cenotes, airports, and Project Mexica proof-badge concepts.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://teocuitlatl.com/travel.html">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./chatbot.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="./index.html">
+      <span></span>
+      Project Mexica
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="site-menu">
+      <a href="./index.html#how">How it works</a>
+      <a href="./index.html#routes">Routes</a>
+      <a href="./travel.html">Travel</a>
+      <a href="./gallery.html">Gallery</a>
+      <a href="./partners.html">Partners</a>
+      <a class="mobile-menu-cta" href="./partners.html">Partner with us</a>
+    </nav>
+    <a class="nav-cta" href="./partners.html">Partner with us</a>
+  </header>
+
+  <main>
+    <section class="travel-hero">
+      <div>
+        <p class="eyebrow">Mexico Travel Hub</p>
+        <h1>Plan the journey. Keep the proof.</h1>
+        <p class="lede">Explore heritage routes, cenotes, airports, pueblos, and future proof-badge concepts across Mexico. This page is travel information and prototype storytelling, not an investment page.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#mexico-map">Open the map</a>
+          <a class="secondary" href="./gallery.html">Vote on medallions</a>
+        </div>
+      </div>
+      <aside class="travel-hero-panel">
+        <span>Route concepts</span>
+        <strong>MIC + CEN + Teotihuacán</strong>
+        <p>Use the map to connect real-world travel planning with badge concepts, cultural context, and future sponsor opportunities.</p>
+      </aside>
+    </section>
+
+    <section id="mexico-map" class="section travel-map-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Interactive Map</p>
+          <h2>Mexico as a route network.</h2>
+        </div>
+        <p>Filter the map by heritage, cenotes, cities, airports, and Project Mexica proof-badge routes.</p>
+      </div>
+
+      <div class="map-shell">
+        <div class="map-toolbar" aria-label="Map filters">
+          <button type="button" data-filter="all" class="active">All</button>
+          <button type="button" data-filter="route">Routes</button>
+          <button type="button" data-filter="heritage">Heritage</button>
+          <button type="button" data-filter="cenote">Cenotes</button>
+          <button type="button" data-filter="city">Cities</button>
+        <button type="button" data-filter="airport">Airports</button>
+      </div>
+        <div class="map-layout">
+          <div id="travelMap" class="travel-map" aria-label="Interactive map of Mexico travel sites"></div>
+          <aside class="map-detail" id="mapDetail">
+            <p class="eyebrow">Selected Place</p>
+            <h3>Mexico Travel Layer</h3>
+            <p>Tap a marker to see travel notes, route context, and why the place belongs in the Project Mexica world.</p>
+            <dl>
+              <div>
+                <dt>Prototype use</dt>
+                <dd>Travel discovery, badge concepts, and partner route planning.</dd>
+              </div>
+              <div>
+                <dt>Future links</dt>
+                <dd>Hotel, guide, transport, and tour affiliate links can live here later.</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+      <p class="map-privacy-note">Map tiles are loaded from OpenStreetMap contributors through public tile infrastructure. Project Mexica does not control those third-party map requests.</p>
+    </section>
+
+    <section class="section travel-admin">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Traveler Admin</p>
+          <h2>Passports, entry cards, and official links.</h2>
+        </div>
+        <p>Useful starting points for U.S.-based travelers, Mexican citizens abroad, and dual citizens planning Mexico trips. Always verify current requirements with official sources before travel.</p>
+      </div>
+
+      <div class="admin-grid">
+        <article>
+          <span>Mexican citizens in the U.S.</span>
+          <h3>Mexican passport appointments</h3>
+          <p>Mexican passports are for Mexican nationals, including eligible dual citizens. U.S.-based applicants generally schedule passport and consular document appointments through SRE's Mi Consulado system or their nearest Mexican consulate.</p>
+          <a href="https://www.miconsulado.sre.gob.mx/" target="_blank" rel="noopener noreferrer">Open Mi Consulado</a>
+        </article>
+
+        <article>
+          <span>Land entry</span>
+          <h3>FMM visitor permit</h3>
+          <p>INM's official FMM portal covers the Forma Migratoria Múltiple for eligible travelers entering Mexico by land. Requirements can vary by nationality, route, and travel purpose.</p>
+          <a href="https://www.inm.gob.mx/fmme/" target="_blank" rel="noopener noreferrer">Open official FMM portal</a>
+        </article>
+
+        <article>
+          <span>U.S. residents and citizens</span>
+          <h3>Travel advisories</h3>
+          <p>Use the U.S. State Department advisory page for security notes, entry reminders, and state-by-state travel guidance before building an itinerary.</p>
+          <a href="https://travel.state.gov/en/international-travel/travel-advisories/mexico.html" target="_blank" rel="noopener noreferrer">Open Mexico advisory</a>
+        </article>
+
+        <article>
+          <span>Fast-reference checklist</span>
+          <h3>Before you go</h3>
+          <p>Confirm passport validity, entry permit needs, airline requirements, car insurance, mobile data, emergency contacts, and whether your route crosses interior checkpoints.</p>
+          <a href="https://www.gob.mx/inm" target="_blank" rel="noopener noreferrer">Open INM</a>
+        </article>
+
+        <article>
+          <span>Trusted traveler</span>
+          <h3>Quick border programs</h3>
+          <p>Frequent U.S.-Mexico border travelers can review official DHS Trusted Traveler programs such as SENTRI or Global Entry. Eligibility, interviews, and lane access are handled by government agencies.</p>
+          <a href="https://ttp.dhs.gov/" target="_blank" rel="noopener noreferrer">Open Trusted Traveler Programs</a>
+        </article>
+      </div>
+      <p class="official-note">This section is general travel information, not legal advice or immigration advice. Project Mexica is not affiliated with SRE, INM, the U.S. State Department, or any government agency.</p>
+    </section>
+
+    <section class="section travel-routes">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Route Ideas</p>
+          <h2>Travel stories that make the prototype feel real.</h2>
+        </div>
+        <p>These are editorial travel concepts. They can later become sponsored guides, itinerary pages, or affiliate-supported travel tools.</p>
+      </div>
+
+      <div class="travel-route-grid">
+        <article>
+          <span class="badge">MIC</span>
+          <h3>Lake Pátzcuaro Weekend</h3>
+          <p>Morelia, Pátzcuaro, Janitzio, El Estribo Grande, lake views, local food, and a route badge concept built around repeatable proof stops.</p>
+          <ul>
+            <li>Best fit: culture, photography, family travel</li>
+            <li>Nearest major airport: Morelia</li>
+            <li>Proof concept: MIC badge</li>
+          </ul>
+        </article>
+        <article>
+          <span class="badge">CEN</span>
+          <h3>Cancún Cenote Circuit</h3>
+          <p>Cancún, Puerto Morelos, Ruta de los Cenotes, Tulum, Cobá, Valladolid, and a multi-trip CEN badge path.</p>
+          <ul>
+            <li>Best fit: cenotes, beach, jungle roads</li>
+            <li>Nearest major airport: Cancún</li>
+            <li>Proof concept: CEN mega badge</li>
+          </ul>
+        </article>
+        <article>
+          <span class="badge">SUN</span>
+          <h3>Teotihuacán Sunrise</h3>
+          <p>Mexico City, Tenochtitlán context, Teotihuacán, Pyramid of the Sun, Pyramid of the Moon, and a future medallion route concept.</p>
+          <ul>
+            <li>Best fit: first-time Mexico travelers</li>
+            <li>Nearest major airport: Mexico City</li>
+            <li>Proof concept: Sun and Moon medallions</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section travel-info">
+      <p class="eyebrow">Visitor Planning</p>
+      <h2>Useful travel information we can keep expanding.</h2>
+      <div class="travel-info-grid">
+        <article>
+          <h3>Airport anchors</h3>
+          <p>Start with Mexico City, Cancún, Guadalajara, Monterrey, Morelia, Mérida, Oaxaca, and Tijuana as flight-planning anchors.</p>
+        </article>
+        <article>
+          <h3>Seasonality</h3>
+          <p>Cenote and beach routes are strongest in dry, clear-weather windows. Heritage city routes can work year-round with better heat planning.</p>
+        </article>
+        <article>
+          <h3>Affiliate-ready later</h3>
+          <p>Hotel, bus, tour, insurance, eSIM, guide, and car-rental links can be added as travel resources with clear disclosure.</p>
+        </article>
+        <article>
+          <h3>Document planning</h3>
+          <p>Passport, FMM, consular appointment, and trusted-traveler links make the page useful before someone is ready to think about badges.</p>
+        </article>
+        <article>
+          <h3>Legal framing</h3>
+          <p>Travel pages can inspire curiosity around TOM, TEO, and badges while staying clearly educational, editorial, and prototype-focused.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section partner-safe">
+      <p class="eyebrow">Important</p>
+      <h2>Travel content is not token promotion.</h2>
+      <p>This travel hub is informational and editorial. Project Mexica remains a prototype/testnet demonstration. TOM, TEO, MIC, and CEN are product concepts and demo assets, not legal tender, not securities, not travel rewards currently redeemable for cash, and not promises of returns.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Project Mexica is a prototype and testnet demonstration. Travel content is informational only and may later include clearly disclosed affiliate links. Nothing on this site is investment advice, financial advice, or a promise of returns. <a href="./privacy.html">Privacy Notice</a>.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="./chatbot.js"></script>
+  <script>
+    const places = [
+      {
+        name: "Tenochtitlán / Historic Center",
+        type: "heritage",
+        badge: "Heritage",
+        coords: [19.4326, -99.1332],
+        summary: "Capital context for the Mexica world, layered into present-day Mexico City.",
+        travel: "Best paired with the Templo Mayor Museum, Zócalo, Chapultepec, and Xochimilco.",
+        concept: "Medallion inspiration: Tenochtitlán lake-city concept art."
+      },
+      {
+        name: "Teotihuacán",
+        type: "route",
+        badge: "SUN",
+        coords: [19.6925, -98.8438],
+        summary: "Pyramid of the Sun and Pyramid of the Moon route anchor near Mexico City.",
+        travel: "Most visitors day-trip from Mexico City; sunrise and early morning visits photograph best.",
+        concept: "Future proof route for Sun and Moon medallion concepts."
+      },
+      {
+        name: "Mexico City Airport",
+        type: "airport",
+        badge: "MEX",
+        coords: [19.4361, -99.0719],
+        summary: "Major international airport and central travel hub.",
+        travel: "Best gateway for Mexico City, Teotihuacán, Puebla, and central Mexico routes.",
+        concept: "Flight anchor for future itinerary planning."
+      },
+      {
+        name: "Lake Pátzcuaro",
+        type: "route",
+        badge: "MIC",
+        coords: [19.5796, -101.6516],
+        summary: "Lake route anchor for Janitzio, Pátzcuaro, and Michoacán proof concepts.",
+        travel: "Pair with Morelia, Tzintzuntzan, Santa Clara del Cobre, and local food stops.",
+        concept: "Proof concept: MIC badge."
+      },
+      {
+        name: "Janitzio",
+        type: "heritage",
+        badge: "MIC",
+        coords: [19.5731, -101.6507],
+        summary: "Island landmark in Lake Pátzcuaro with strong route storytelling potential.",
+        travel: "Boat access from Pátzcuaro docks. Plan for crowds during major holidays.",
+        concept: "Featured in the Lago de Pátzcuaro medallion concept."
+      },
+      {
+        name: "Morelia Airport",
+        type: "airport",
+        badge: "MLM",
+        coords: [19.8499, -101.0255],
+        summary: "Airport anchor for Michoacán routes.",
+        travel: "Useful gateway for Morelia, Pátzcuaro, Janitzio, and surrounding pueblos.",
+        concept: "Route logistics anchor for MIC campaigns."
+      },
+      {
+        name: "Cancún",
+        type: "city",
+        badge: "CEN",
+        coords: [21.1619, -86.8515],
+        summary: "Tourism anchor for beach, cenote, ferry, and Riviera Maya travel.",
+        travel: "Best gateway for Puerto Morelos, Isla Mujeres, Tulum, Valladolid, and cenote routes.",
+        concept: "Starting hub for the CEN badge concept."
+      },
+      {
+        name: "Cancún Airport",
+        type: "airport",
+        badge: "CUN",
+        coords: [21.0365, -86.8771],
+        summary: "Major international airport for Quintana Roo and the Yucatán Peninsula.",
+        travel: "Primary arrival point for CEN route travelers.",
+        concept: "Flight anchor for future travel planning and affiliate links."
+      },
+      {
+        name: "Puerto Morelos",
+        type: "cenote",
+        badge: "CEN",
+        coords: [20.8486, -86.8769],
+        summary: "Gateway town for Ruta de los Cenotes and repeat-trip adventure planning.",
+        travel: "Strong base for cenotes, reef trips, and quieter Riviera Maya stays.",
+        concept: "Core stop for the Cenote Cancún Adventure."
+      },
+      {
+        name: "Ruta de los Cenotes",
+        type: "cenote",
+        badge: "CEN",
+        coords: [20.8272, -87.0129],
+        summary: "Cenote corridor near Puerto Morelos with multi-stop route potential.",
+        travel: "Ideal for repeat visits, guide partnerships, and safety-first itinerary content.",
+        concept: "Future CEN badge route spine."
+      },
+      {
+        name: "Tulum",
+        type: "heritage",
+        badge: "CEN",
+        coords: [20.2114, -87.4654],
+        summary: "Coastal ruins and beach travel anchor in Quintana Roo.",
+        travel: "Pair with cenotes, Cobá, Akumal, and Sian Ka'an planning.",
+        concept: "Optional extension for the CEN route family."
+      },
+      {
+        name: "Cobá",
+        type: "heritage",
+        badge: "CEN",
+        coords: [20.4916, -87.7338],
+        summary: "Maya archaeological zone inland from Tulum and Valladolid.",
+        travel: "Good bridge between cenote travel and deeper Yucatán routes.",
+        concept: "Potential advanced proof stop."
+      },
+      {
+        name: "Chichén Itzá",
+        type: "heritage",
+        badge: "YUC",
+        coords: [20.6843, -88.5678],
+        summary: "Major archaeological site and one of the best-known landmarks in Mexico.",
+        travel: "Commonly paired with Valladolid, cenotes, and Mérida.",
+        concept: "Future heritage-route anchor."
+      },
+      {
+        name: "Valladolid",
+        type: "city",
+        badge: "YUC",
+        coords: [20.6896, -88.2022],
+        summary: "Colonial city and practical base for eastern Yucatán travel.",
+        travel: "Useful for Chichén Itzá, cenotes, Ek Balam, and slower travel itineraries.",
+        concept: "Affiliate-ready hotel and guide hub later."
+      },
+      {
+        name: "Mérida",
+        type: "city",
+        badge: "YUC",
+        coords: [20.9674, -89.5926],
+        summary: "Yucatán capital and strong cultural travel base.",
+        travel: "Pair with Uxmal, cenotes, museums, food, and hacienda routes.",
+        concept: "Future regional route hub."
+      },
+      {
+        name: "Uxmal",
+        type: "heritage",
+        badge: "YUC",
+        coords: [20.3599, -89.7713],
+        summary: "Puuc-region archaeological site south of Mérida.",
+        travel: "Best planned as a day trip from Mérida or a regional heritage circuit.",
+        concept: "Future medallion and proof-route candidate."
+      },
+      {
+        name: "Bacalar",
+        type: "city",
+        badge: "LAG",
+        coords: [18.6783, -88.3924],
+        summary: "Lagoon destination with strong visual travel appeal.",
+        travel: "Best for slower trips, lagoon tours, and southern Quintana Roo itineraries.",
+        concept: "Future water-route storytelling candidate."
+      },
+      {
+        name: "Oaxaca",
+        type: "city",
+        badge: "OAX",
+        coords: [17.0732, -96.7266],
+        summary: "Cultural capital for food, markets, mezcal, and surrounding heritage sites.",
+        travel: "Pair with Monte Albán, Mitla, Hierve el Agua, and artisan towns.",
+        concept: "Future culinary and craft route hub."
+      },
+      {
+        name: "Monte Albán",
+        type: "heritage",
+        badge: "OAX",
+        coords: [17.0469, -96.7670],
+        summary: "Major Zapotec archaeological site overlooking Oaxaca Valley.",
+        travel: "Short trip from Oaxaca City; strong educational route content.",
+        concept: "Future heritage proof candidate."
+      },
+      {
+        name: "Palenque",
+        type: "heritage",
+        badge: "CHP",
+        coords: [17.4849, -92.0467],
+        summary: "Jungle archaeological zone in Chiapas with high storytelling value.",
+        travel: "Best planned with waterfalls, jungle stays, and longer regional routes.",
+        concept: "Future advanced route candidate."
+      },
+      {
+        name: "Puebla / Cholula",
+        type: "heritage",
+        badge: "PUE",
+        coords: [19.0578, -98.3010],
+        summary: "Central Mexico city pair with food, volcano views, and deep history.",
+        travel: "Easy extension from Mexico City; good weekend itinerary candidate.",
+        concept: "Future city-and-heritage proof route."
+      }
+    ];
+
+    const detail = document.getElementById("mapDetail");
+    const map = L.map("travelMap", {
+      scrollWheelZoom: false,
+      zoomControl: true
+    }).setView([23.6, -102.5], 5);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 18,
+      attribution: "&copy; OpenStreetMap contributors"
+    }).addTo(map);
+
+    const colors = {
+      route: "#e2b646",
+      heritage: "#31c4c6",
+      cenote: "#00a878",
+      city: "#e45f4f",
+      airport: "#f7f2e6"
+    };
+
+    const markers = places.map(place => {
+      const marker = L.circleMarker(place.coords, {
+        radius: place.type === "airport" ? 7 : 9,
+        color: colors[place.type],
+        fillColor: colors[place.type],
+        fillOpacity: 0.78,
+        weight: 2
+      }).addTo(map);
+      marker.bindTooltip(`${place.badge} · ${place.name}`);
+      marker.on("click", () => selectPlace(place, marker));
+      return { marker, place };
+    });
+
+    const routeLines = [
+      [[19.4326, -99.1332], [19.6925, -98.8438]],
+      [[19.8499, -101.0255], [19.5796, -101.6516], [19.5731, -101.6507]],
+      [[21.0365, -86.8771], [21.1619, -86.8515], [20.8486, -86.8769], [20.8272, -87.0129], [20.2114, -87.4654], [20.4916, -87.7338], [20.6896, -88.2022]]
+    ];
+
+    routeLines.forEach(line => {
+      L.polyline(line, {
+        color: "#e2b646",
+        weight: 2,
+        opacity: 0.62,
+        dashArray: "8 8"
+      }).addTo(map);
+    });
+
+    function selectPlace(place, marker) {
+      detail.innerHTML = `
+        <p class="eyebrow">${place.badge} · ${place.type}</p>
+        <h3>${place.name}</h3>
+        <p>${place.summary}</p>
+        <dl>
+          <div>
+            <dt>Travel note</dt>
+            <dd>${place.travel}</dd>
+          </div>
+          <div>
+            <dt>Project Mexica context</dt>
+            <dd>${place.concept}</dd>
+          </div>
+        </dl>
+      `;
+      marker.openTooltip();
+    }
+
+    document.querySelectorAll("[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach(item => item.classList.toggle("active", item === button));
+
+        const visible = [];
+        markers.forEach(({ marker, place }) => {
+          const shouldShow = filter === "all" || place.type === filter || (filter === "route" && place.badge === "MIC") || (filter === "route" && place.badge === "CEN") || (filter === "route" && place.badge === "SUN");
+          marker.setStyle({
+            opacity: shouldShow ? 1 : 0.18,
+            fillOpacity: shouldShow ? 0.78 : 0.08
+          });
+          if (shouldShow) visible.push(place.coords);
+        });
+
+        if (visible.length) {
+          map.fitBounds(visible, { padding: [40, 40], maxZoom: filter === "all" ? 5 : 9 });
+        }
+      });
+    });
+
+    const menuToggle = document.querySelector(".menu-toggle");
+    const siteMenu = document.querySelector("#site-menu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      document.body.classList.toggle("menu-open", !isOpen);
+    });
+
+    siteMenu.addEventListener("click", event => {
+      if (event.target.closest("a")) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("menu-open");
+      }
+    });
+  </script>
+</body>
+</html>

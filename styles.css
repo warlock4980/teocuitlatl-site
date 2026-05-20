@@ -894,6 +894,80 @@ figcaption {
   color: #05120f;
 }
 
+.tip-jar-section {
+  background:
+    radial-gradient(circle at 82% 18%, rgba(226, 182, 70, 0.16), transparent 28%),
+    #0b0f0f;
+}
+
+.tip-jar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 380px);
+  gap: 28px;
+  align-items: center;
+  padding: 28px;
+  border: 1px solid rgba(247, 242, 230, 0.12);
+  border-radius: 8px;
+  background: rgba(18, 23, 22, 0.74);
+  box-shadow: 0 28px 82px rgba(0, 0, 0, 0.28);
+}
+
+.tip-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.tip-copy span {
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tip-copy h3 {
+  margin: 0;
+  color: var(--paper);
+  font-family: "Fraunces", serif;
+  font-size: clamp(34px, 5vw, 58px);
+  line-height: 1;
+}
+
+.tip-copy p,
+.tip-copy li,
+.tip-qr figcaption {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.tip-copy ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.tip-qr {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.tip-qr img {
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  display: block;
+  padding: 14px;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.tip-qr figcaption {
+  text-align: center;
+}
+
 .partner-hero h1 {
   max-width: 980px;
 }
@@ -1016,6 +1090,211 @@ figcaption {
 .partner-safe p {
   max-width: 940px;
   color: #46534e;
+}
+
+.travel-hero {
+  min-height: 76vh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 460px);
+  gap: 42px;
+  align-items: center;
+  padding: 86px 72px 54px;
+  background:
+    linear-gradient(120deg, rgba(11, 15, 15, 0.86), rgba(11, 15, 15, 0.46)),
+    url("./assets/gallery/cenote-cancun-coin.png") center right / min(720px, 72vw) auto no-repeat,
+    radial-gradient(circle at 72% 38%, rgba(211, 163, 62, 0.22), transparent 34%),
+    #0b0f0f;
+}
+
+.travel-hero h1 {
+  max-width: 860px;
+}
+
+.travel-hero-panel {
+  display: grid;
+  gap: 18px;
+  padding: 26px;
+  border: 1px solid rgba(247, 242, 230, 0.16);
+  border-radius: 8px;
+  background: rgba(18, 23, 22, 0.76);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(18px);
+}
+
+.travel-hero-panel span,
+.travel-route-grid article > span,
+.admin-grid article > span {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.travel-hero-panel strong {
+  color: var(--paper);
+  font-family: "Fraunces", serif;
+  font-size: 38px;
+  line-height: 1.02;
+}
+
+.travel-map-section {
+  padding-top: 56px;
+}
+
+.map-shell {
+  overflow: hidden;
+  border: 1px solid rgba(247, 242, 230, 0.12);
+  border-radius: 8px;
+  background: #101514;
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.32);
+}
+
+.map-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 14px;
+  border-bottom: 1px solid rgba(247, 242, 230, 0.1);
+}
+
+.map-toolbar button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid rgba(247, 242, 230, 0.16);
+  border-radius: 999px;
+  background: rgba(247, 242, 230, 0.05);
+  color: var(--paper);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.map-toolbar button.is-active,
+.map-toolbar button:hover,
+.map-toolbar button:focus-visible {
+  background: var(--gold);
+  color: #171106;
+}
+
+.map-layout {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+}
+
+.travel-map {
+  min-height: 620px;
+  background: #d8d2c0;
+}
+
+.travel-map .leaflet-control-attribution {
+  font-size: 10px;
+}
+
+.map-detail {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 28px;
+  border-left: 1px solid rgba(247, 242, 230, 0.1);
+}
+
+.map-detail h3 {
+  margin: 0;
+  color: var(--paper);
+  font-family: "Fraunces", serif;
+  font-size: 30px;
+}
+
+.map-detail p,
+.map-privacy-note,
+.official-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.map-detail dl {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+}
+
+.map-detail dt {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.map-detail dd {
+  margin: 3px 0 0;
+  color: var(--paper);
+  font-weight: 850;
+}
+
+.travel-route-grid,
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.travel-info-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.travel-route-grid article,
+.admin-grid article,
+.travel-info-grid article {
+  min-height: 100%;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 22px;
+  border: 1px solid rgba(247, 242, 230, 0.12);
+  border-radius: 8px;
+  background: rgba(18, 23, 22, 0.72);
+}
+
+.travel-route-grid h3,
+.admin-grid h3,
+.travel-info-grid h3 {
+  margin: 0;
+  color: var(--paper);
+  font-size: 22px;
+}
+
+.travel-route-grid p,
+.admin-grid p,
+.travel-info-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.admin-grid a {
+  color: var(--gold);
+  font-weight: 950;
+}
+
+.travel-admin {
+  background:
+    linear-gradient(180deg, rgba(18, 23, 22, 0.96), rgba(11, 15, 15, 1)),
+    #0b0f0f;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+}
+
+.leaflet-popup-tip {
+  box-shadow: none;
 }
 
 .site-footer {
@@ -1172,6 +1451,7 @@ figcaption {
   }
 
   .hero,
+  .travel-hero,
   .steps,
   .screens,
   .route-cards,
@@ -1179,11 +1459,17 @@ figcaption {
   .coin-grid,
   .tier-grid,
   .ambassador,
-  .proof-strip {
+  .proof-strip,
+  .tip-jar,
+  .map-layout,
+  .travel-route-grid,
+  .admin-grid,
+  .travel-info-grid {
     grid-template-columns: 1fr;
   }
 
   .hero,
+  .travel-hero,
   .section {
     padding-left: 24px;
     padding-right: 24px;
@@ -1195,6 +1481,31 @@ figcaption {
     max-width: 100vw;
     overflow: hidden;
     padding-top: 58px;
+  }
+
+  .travel-hero {
+    min-height: auto;
+    gap: 26px;
+    padding-top: 58px;
+    padding-bottom: 34px;
+    background:
+      linear-gradient(180deg, rgba(11, 15, 15, 0.78), rgba(11, 15, 15, 0.96)),
+      url("./assets/gallery/cenote-cancun-coin.png") top right / min(360px, 82vw) auto no-repeat,
+      #0b0f0f;
+  }
+
+  .travel-hero-panel strong {
+    font-size: 28px;
+  }
+
+  .map-layout,
+  .travel-map {
+    min-height: 520px;
+  }
+
+  .map-detail {
+    border-left: 0;
+    border-top: 1px solid rgba(247, 242, 230, 0.1);
   }
 
   h1 {

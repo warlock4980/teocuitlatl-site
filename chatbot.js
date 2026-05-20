@@ -27,6 +27,14 @@
       text: "For partners, Project Mexica is framed as a commercial pilot: route sponsorships, local campaigns, tourism activations, and payment-flow demos. It is not a token sale. The partner page has the current pilot tiers: https://teocuitlatl.com/partners.html"
     },
     {
+      keys: ["travel", "map", "passport", "fmm", "tourist card", "entry", "airport", "hotel", "trip", "itinerary"],
+      text: "The Mexico Travel Hub maps route ideas, airports, cenotes, heritage sites, and official travel-planning links. It includes starting points for Mi Consulado passport appointments, the official FMM portal, and DHS Trusted Traveler programs such as SENTRI or Global Entry. Always verify requirements with official sources: https://teocuitlatl.com/travel.html"
+    },
+    {
+      keys: ["tip", "tip jar", "donate", "donation", "support the creator", "xrp", "qr"],
+      text: "The tip jar is on the medallion gallery page: https://teocuitlatl.com/gallery.html#support It is voluntary creator support only. It is not an investment, token sale, partner payment, or purchase of TOM, TEO, badges, or medallions."
+    },
+    {
       keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold"],
       text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlán and Moctezuma joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
     },
