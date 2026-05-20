@@ -902,8 +902,6 @@ figcaption {
 }
 
 .coin-grid article {
-  --coin-scale: 1;
-  --coin-y: 0%;
   overflow: hidden;
   border: 1px solid var(--hairline);
   border-radius: 8px;
@@ -926,84 +924,15 @@ figcaption {
     var(--surface);
 }
 
-.coin-grid article[data-coin="aguila"],
-.coin-grid article[data-coin="tenochtitlan"],
-.coin-grid article[data-coin="moctezuma"] {
-  --coin-scale: 0.92;
-}
-
-.coin-grid article[data-coin="angel"],
-.coin-grid article[data-coin="juarez"] {
-  --coin-scale: 0.94;
-}
-
-.coin-grid article[data-coin="alcubierre"] {
-  --coin-scale: 1.22;
-}
-
-.coin-grid article[data-coin="cenote"] {
-  --coin-scale: 1.14;
-}
-
-.coin-grid article[data-coin="moon"] {
-  --coin-scale: 1.28;
-}
-
-.coin-grid article[data-coin="sun"] {
-  --coin-scale: 1.14;
-}
-
-.coin-grid article[data-coin="septiembre"] {
-  --coin-scale: 1.03;
-}
-
-.coin-art {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 1;
-  padding: 0;
-  background:
-    radial-gradient(circle at 48% 39%, rgba(247, 226, 176, 0.34), transparent 22%),
-    radial-gradient(circle at 72% 72%, rgba(31, 91, 74, 0.22), transparent 30%),
-    radial-gradient(circle at 21% 78%, rgba(102, 77, 42, 0.34), transparent 26%),
-    linear-gradient(135deg, #1a1712 0%, #070909 48%, #121816 100%);
-}
-
-.coin-art::before,
-.coin-art::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.coin-art::before {
-  background:
-    linear-gradient(118deg, rgba(247, 226, 176, 0.18), transparent 28%),
-    repeating-linear-gradient(145deg, rgba(247, 242, 230, 0.045) 0 1px, transparent 1px 13px);
-  mix-blend-mode: screen;
-}
-
-.coin-art::after {
-  background:
-    radial-gradient(circle at 50% 52%, transparent 44%, rgba(0, 0, 0, 0.14) 58%, rgba(0, 0, 0, 0.54) 100%);
-}
-
-.coin-art img {
+.coin-grid img {
   display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 1;
   object-fit: cover;
-  clip-path: circle(48% at 50% 50%);
-  filter:
-    contrast(1.08)
-    saturate(0.88)
-    drop-shadow(0 22px 24px rgba(0, 0, 0, 0.34));
-  transform: translateY(var(--coin-y)) scale(var(--coin-scale));
-  transform-origin: center;
+  filter: contrast(1.08) saturate(0.88);
 }
 
-.coin-grid article > div:not(.coin-art) {
+.coin-grid div {
   padding: 24px;
 }
 
