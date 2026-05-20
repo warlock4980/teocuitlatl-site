@@ -1149,18 +1149,43 @@ figcaption {
 
   .hero-shot {
     max-width: calc(100vw - 48px);
-    padding: 24px;
+    padding: 20px 20px 24px;
     border-radius: 18px;
   }
 
   .hero-product {
     position: relative;
     top: auto;
-    min-height: 360px;
+    min-height: clamp(250px, 68vw, 320px);
+    align-items: start;
+    padding-top: 4px;
+    padding-bottom: 18px;
+  }
+
+  .hero-forge-base {
+    bottom: 38px;
+    width: min(62%, 280px);
   }
 
   .hero-product img {
-    width: min(88%, 360px);
+    width: min(80%, 300px);
+    margin-top: -6px;
+    transform:
+      translate3d(
+        calc(var(--pointer-x) * 8px),
+        calc((var(--pointer-y) * 8px) + (var(--scroll-progress) * -18px) + var(--forge-lift)),
+        0
+      )
+      scale(var(--forge-scale))
+      rotateX(calc((var(--pointer-y) * -3deg) + 1deg))
+      rotateY(calc((var(--pointer-x) * 5deg) + var(--coin-turn, 0deg)))
+      rotateZ(calc(var(--pointer-x) * 1deg));
+  }
+
+  .hero-product-caption {
+    position: relative;
+    z-index: 2;
+    margin-top: 8px;
   }
 
   .hero-product-caption strong {
@@ -1182,5 +1207,23 @@ figcaption {
 @media (max-width: 560px) {
   .nav-cta {
     display: none;
+  }
+
+  .hero-shot {
+    padding: 18px;
+  }
+
+  .hero-product {
+    min-height: clamp(220px, 64vw, 282px);
+    padding-bottom: 12px;
+  }
+
+  .hero-product img {
+    width: min(78%, 262px);
+  }
+
+  .hero-forge-base {
+    bottom: 34px;
+    width: min(60%, 230px);
   }
 }
