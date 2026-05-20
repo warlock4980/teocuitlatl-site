@@ -14,15 +14,15 @@
     },
     {
       keys: ["badge", "mic", "cen", "proof", "prove"],
-      text: "Badges prove you were there. MIC is the Lake Pátzcuaro / Michoacán route badge. CEN is the Cenote Cancún Adventure badge. They are proof concepts for completed routes."
+      text: "Badges prove you were there. MIC is the Lake Pátzcuaro / Michoacán route badge. CEN is the Cancún Cenote Adventure badge. They are proof concepts for completed routes."
     },
     {
       keys: ["michoacan", "michoacán", "janitzio", "patzcuaro", "pátzcuaro", "estribo", "mirador"],
-      text: "The Michoacán route connects Janitzio and El Estribo Grande near Lake Pátzcuaro. Complete the proof route and the concept unlock is MIC: Insignia de Michoacán."
+      text: "The Michoacán route connects Janitzio and El Estribo Grande near Lake Pátzcuaro. Complete the proof route and the concept unlock is MIC: Michoacán Badge."
     },
     {
       keys: ["cancun", "cancún", "cenote", "cenotes", "adventure", "quintana"],
-      text: "Cenote Cancún Adventure is the multi-stop proof route concept near Cancún and Puerto Morelos. It is built for repeat trips, route progress, and a larger CEN badge moment."
+      text: "Cancún Cenote Adventure is the multi-stop proof route concept near Cancún and Puerto Morelos. It is built for repeat trips, route progress, and a larger CEN badge moment."
     },
     {
       keys: ["partner", "sponsor", "pilot", "merchant", "hotel", "tourism"],
@@ -46,7 +46,7 @@
     },
     {
       keys: ["juarez", "juárez", "benito", "angel", "ángel", "independence", "eagle", "serpent", "snake", "nopal", "flag"],
-      text: "The newer heritage concepts include Benito Juárez, Ángel de la Independencia, and Águila y Nopal. They are commemorative medallion art only, not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
+      text: "The newer heritage concepts include Benito Juárez, Ángel de la Independencia, and Eagle and Nopal. They are commemorative medallion art only, not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
