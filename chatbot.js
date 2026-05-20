@@ -10,15 +10,15 @@
     },
     {
       keys: ["badge", "mic", "cen", "proof", "prove"],
-      text: "Badges prove you were there. MIC is the Lake Patzcuaro / Michoacan route badge. CEN is the Cenote Cancun Adventure badge. They are proof concepts for completed routes."
+      text: "Badges prove you were there. MIC is the Lake Pátzcuaro / Michoacán route badge. CEN is the Cenote Cancún Adventure badge. They are proof concepts for completed routes."
     },
     {
-      keys: ["michoacan", "janitzio", "patzcuaro", "estribo", "mirador"],
-      text: "The Michoacan route connects Janitzio and El Estribo Grande near Lake Patzcuaro. Complete the proof route and the concept unlock is MIC: Insignia de Michoacan."
+      keys: ["michoacan", "michoacán", "janitzio", "patzcuaro", "pátzcuaro", "estribo", "mirador"],
+      text: "The Michoacán route connects Janitzio and El Estribo Grande near Lake Pátzcuaro. Complete the proof route and the concept unlock is MIC: Insignia de Michoacán."
     },
     {
-      keys: ["cancun", "cenote", "cenotes", "adventure", "quintana"],
-      text: "Cenote Cancun Adventure is the multi-stop proof route concept near Cancun and Puerto Morelos. It is built for repeat trips, route progress, and a larger CEN badge moment."
+      keys: ["cancun", "cancún", "cenote", "cenotes", "adventure", "quintana"],
+      text: "Cenote Cancún Adventure is the multi-stop proof route concept near Cancún and Puerto Morelos. It is built for repeat trips, route progress, and a larger CEN badge moment."
     },
     {
       keys: ["partner", "sponsor", "pilot", "merchant", "hotel", "tourism"],
@@ -26,11 +26,11 @@
     },
     {
       keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold"],
-      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlan and Moctezuma joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
+      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlán and Moctezuma joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
-      keys: ["moctezuma", "tenochtitlan", "heritage"],
-      text: "The heritage medallions are commemorative concept art: Tenochtitlan shows the lake city at full scale, while Moctezuma is framed as a dignified ruler motif. They are not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
+      keys: ["moctezuma", "tenochtitlan", "tenochtitlán", "heritage"],
+      text: "The heritage medallions are commemorative concept art: Tenochtitlán shows the lake city at full scale, while Moctezuma is framed as a dignified ruler motif. They are not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
@@ -54,7 +54,7 @@
     const text = message.toLowerCase();
     const match = responses.find(item => item.keys.some(key => text.includes(key)));
     if (match) return match.text;
-    return "I can help with TOM, TEO, proof badges, the Michoacan route, the Cenote Cancun Adventure, medallion concepts, and partner pilots. For direct questions, email hola@teocuitlatl.com.";
+    return "I can help with TOM, TEO, proof badges, the Michoacán route, the Cenote Cancún Adventure, medallion concepts, and partner pilots. For direct questions, email hola@teocuitlatl.com.";
   }
 
   function appendLinkedText(node, text) {
