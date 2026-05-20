@@ -1,0 +1,337 @@
+.mexica-chat-launcher {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9998;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  perspective: 900px;
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.42));
+}
+
+.mexica-chat-launcher.open {
+  display: none;
+}
+
+.mexica-chat-coin {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  animation: mexica-coin-idle 5.8s ease-in-out infinite;
+}
+
+.mexica-chat-coin::before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: inherit;
+  background: radial-gradient(circle, rgba(226, 182, 70, 0.34), transparent 62%);
+  transform: translateZ(-8px);
+}
+
+.mexica-chat-face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  backface-visibility: hidden;
+  border: 2px solid rgba(247, 242, 230, 0.58);
+  background: #111;
+}
+
+.mexica-chat-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mexica-chat-face.back {
+  transform: rotateY(180deg);
+}
+
+.mexica-chat-launcher:hover .mexica-chat-coin,
+.mexica-chat-launcher:focus-visible .mexica-chat-coin {
+  animation: mexica-coin-flip 1.25s cubic-bezier(0.3, 0, 0.2, 1) forwards;
+}
+
+@keyframes mexica-coin-idle {
+  0%, 100% {
+    transform: translateY(0) rotateY(-10deg) rotateZ(-2deg);
+  }
+  50% {
+    transform: translateY(-6px) rotateY(18deg) rotateZ(2deg);
+  }
+}
+
+@keyframes mexica-coin-flip {
+  0% {
+    transform: translateY(0) rotateY(0deg) rotateZ(0deg);
+  }
+  45% {
+    transform: translateY(-18px) rotateY(540deg) rotateZ(8deg);
+  }
+  72% {
+    transform: translateY(2px) rotateY(850deg) rotateZ(-3deg);
+  }
+  100% {
+    transform: translateY(0) rotateY(720deg) rotateZ(0deg);
+  }
+}
+
+.mexica-chat-panel {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 9999;
+  width: 390px;
+  max-width: calc(100vw - 28px);
+  height: 580px;
+  max-height: calc(100dvh - 42px);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(247, 242, 230, 0.14);
+  border-radius: 20px;
+  background: #0b0f0f;
+  color: var(--paper, #f7f2e6);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.55);
+}
+
+.mexica-chat-panel.open {
+  display: flex;
+}
+
+.mexica-chat-header {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(226, 182, 70, 0.32), transparent 34%),
+    linear-gradient(135deg, #101414, #18231f);
+  border-bottom: 1px solid rgba(247, 242, 230, 0.1);
+}
+
+.mexica-chat-mini-coin {
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid rgba(226, 182, 70, 0.74);
+}
+
+.mexica-chat-mini-coin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mexica-chat-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.mexica-chat-title strong,
+.mexica-chat-title span {
+  display: block;
+}
+
+.mexica-chat-title strong {
+  font-size: 16px;
+}
+
+.mexica-chat-title span {
+  margin-top: 2px;
+  color: var(--muted, #b8c3bd);
+  font-size: 12px;
+}
+
+.mexica-chat-close,
+.mexica-chat-clear {
+  min-width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(247, 242, 230, 0.16);
+  border-radius: 999px;
+  background: rgba(247, 242, 230, 0.08);
+  color: var(--paper, #f7f2e6);
+  cursor: pointer;
+  font: inherit;
+}
+
+.mexica-chat-clear {
+  padding: 0 12px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.mexica-chat-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding: 16px;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(49, 196, 198, 0.1), transparent 32%),
+    #101414;
+}
+
+.mexica-msg {
+  max-width: 84%;
+  padding: 10px 13px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.mexica-msg.bot {
+  align-self: flex-start;
+  background: rgba(247, 242, 230, 0.08);
+  border: 1px solid rgba(247, 242, 230, 0.12);
+}
+
+.mexica-msg.user {
+  align-self: flex-end;
+  background: var(--gold, #e2b646);
+  color: #171106;
+  font-weight: 800;
+}
+
+.mexica-chat-prompts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px 0;
+  background: #0b0f0f;
+}
+
+.mexica-chat-prompts button {
+  min-height: 34px;
+  border: 1px solid rgba(226, 182, 70, 0.34);
+  border-radius: 999px;
+  padding: 0 12px;
+  background: rgba(226, 182, 70, 0.1);
+  color: var(--paper, #f7f2e6);
+  cursor: pointer;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.mexica-chat-input-row {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #0b0f0f;
+  border-top: 1px solid rgba(247, 242, 230, 0.1);
+}
+
+.mexica-chat-input {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid rgba(247, 242, 230, 0.14);
+  border-radius: 13px;
+  padding: 10px 12px;
+  background: rgba(247, 242, 230, 0.06);
+  color: var(--paper, #f7f2e6);
+  font: inherit;
+  outline: none;
+}
+
+.mexica-chat-input:focus {
+  border-color: rgba(226, 182, 70, 0.7);
+}
+
+.mexica-chat-send {
+  border: 0;
+  border-radius: 13px;
+  padding: 0 15px;
+  background: var(--gold, #e2b646);
+  color: #171106;
+  font: inherit;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.mexica-chat-note {
+  padding: 0 14px 12px;
+  background: #0b0f0f;
+  color: #9ca8a2;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+@media (max-width: 520px) {
+  .mexica-chat-panel {
+    right: 8px;
+    left: 8px;
+    bottom: calc(8px + env(safe-area-inset-bottom));
+    width: auto;
+    max-width: none;
+    height: min(620px, calc(100dvh - 20px));
+    max-height: calc(100dvh - 20px);
+  }
+
+  .mexica-chat-launcher {
+    right: auto;
+    left: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    width: 58px;
+    height: 58px;
+  }
+
+  .mexica-chat-coin {
+    width: 54px;
+    height: 54px;
+  }
+
+  .mexica-chat-send {
+    position: absolute;
+    left: 22px;
+    bottom: 20px;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    font-size: 0;
+  }
+
+  .mexica-chat-input-row {
+    position: relative;
+    display: block;
+  }
+
+  .mexica-chat-input {
+    width: 100%;
+    padding-left: 54px;
+    padding-right: 12px;
+  }
+
+  .mexica-chat-send::after {
+    content: ">";
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mexica-chat-coin,
+  .mexica-chat-launcher:hover .mexica-chat-coin,
+  .mexica-chat-launcher:focus-visible .mexica-chat-coin {
+    animation: none;
+    transform: none;
+  }
+}

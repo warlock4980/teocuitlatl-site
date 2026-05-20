@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Project Mexica Medallion Gallery</title>
-  <meta name="description" content="Vote for your favorite Project Mexica commemorative medallion concept.">
+  <meta name="description" content="Pick your top three Project Mexica commemorative medallion concepts.">
   <link rel="canonical" href="https://teocuitlatl.com/gallery.html">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./chatbot.css">
 </head>
 <body>
   <header class="nav">
@@ -33,19 +34,19 @@
     <section class="gallery-hero">
       <p class="eyebrow">Concept Gallery</p>
       <h1>Choose the medallion people will fall in love with.</h1>
-      <p class="lede">These commemorative concepts explore routes, history, science, and nostalgia. Vote for the one that should define the first proof set.</p>
+      <p class="lede">These commemorative concepts explore routes, history, science, and nostalgia. Pick your top three now; five more concepts are planned for the next drop.</p>
     </section>
 
     <section id="vote" class="section gallery-section">
       <div class="section-head">
         <div>
           <p class="eyebrow">Crowd Favorite</p>
-          <h2>Pick one. Let the people speak.</h2>
+          <h2>Pick your top three. Let the people speak.</h2>
         </div>
-        <p>This first poll is a prototype stored in your browser. Public voting can be wired to Neon when we launch the real campaign.</p>
+        <p>This first poll is a prototype stored in your browser. Public voting can be wired to Neon when we launch the real campaign. Five more medallion concepts are planned for the next drop.</p>
       </div>
 
-      <div class="poll-status" id="pollStatus">No vote yet. Choose your favorite concept.</div>
+      <div class="poll-status" id="pollStatus">No picks yet. Choose up to three concepts.</div>
 
       <div class="coin-grid" id="coinGrid">
         <article data-coin="patzcuaro">
@@ -125,32 +126,66 @@
     <p>These are commemorative concept images only. They are not legal tender, not for sale, and not investment products. Project Mexica is a prototype/testnet demonstration.</p>
   </footer>
 
+  <script src="./chatbot.js"></script>
   <script>
-    const storageKey = 'project-mexica-gallery-vote';
+    const storageKey = 'project-mexica-gallery-top-three';
     const status = document.getElementById('pollStatus');
     const cards = [...document.querySelectorAll('[data-coin]')];
+    const maxPicks = 3;
 
-    function applyVote(value) {
+    function readPicks() {
+      try {
+        const value = JSON.parse(localStorage.getItem(storageKey) || '[]');
+        return Array.isArray(value) ? value.slice(0, maxPicks) : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function savePicks(picks) {
+      localStorage.setItem(storageKey, JSON.stringify(picks));
+    }
+
+    function applyVote(picks) {
       cards.forEach(card => {
-        const selected = card.dataset.coin === value;
+        const selected = picks.includes(card.dataset.coin);
         card.classList.toggle('selected', selected);
-        card.querySelector('button').textContent = selected ? 'Your pick' : 'Vote for this';
+        const rank = picks.indexOf(card.dataset.coin) + 1;
+        card.querySelector('button').textContent = selected ? `Pick ${rank} of ${maxPicks}` : 'Add to top 3';
       });
 
-      const selectedCard = cards.find(card => card.dataset.coin === value);
-      status.textContent = selectedCard
-        ? `Your current favorite: ${selectedCard.querySelector('h3').textContent}.`
-        : 'No vote yet. Choose your favorite concept.';
+      if (!picks.length) {
+        status.textContent = 'No picks yet. Choose up to three concepts.';
+        return;
+      }
+
+      const names = picks
+        .map(value => cards.find(card => card.dataset.coin === value)?.querySelector('h3')?.textContent)
+        .filter(Boolean);
+      status.textContent = `Your top ${names.length}: ${names.join(' + ')}. ${maxPicks - names.length} pick${maxPicks - names.length === 1 ? '' : 's'} left.`;
     }
 
     cards.forEach(card => {
       card.querySelector('button').addEventListener('click', () => {
-        localStorage.setItem(storageKey, card.dataset.coin);
-        applyVote(card.dataset.coin);
+        const picks = readPicks();
+        const value = card.dataset.coin;
+        const existing = picks.indexOf(value);
+
+        if (existing >= 0) {
+          picks.splice(existing, 1);
+        } else if (picks.length < maxPicks) {
+          picks.push(value);
+        } else {
+          picks.shift();
+          picks.push(value);
+        }
+
+        savePicks(picks);
+        applyVote(picks);
       });
     });
 
-    applyVote(localStorage.getItem(storageKey));
+    applyVote(readPicks());
 
     const menuToggle = document.querySelector('.menu-toggle');
     const siteMenu = document.querySelector('#site-menu');

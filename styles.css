@@ -569,6 +569,12 @@ figcaption {
   box-shadow: 0 22px 54px rgba(0, 0, 0, 0.28);
 }
 
+.coin-grid article.selected {
+  background:
+    linear-gradient(145deg, rgba(226, 182, 70, 0.14), transparent 42%),
+    var(--surface);
+}
+
 .coin-grid img {
   display: block;
   width: 100%;
