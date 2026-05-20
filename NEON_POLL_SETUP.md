@@ -27,6 +27,12 @@ Set these on the serverless host:
 
 Use `.env.example` as the template. Never commit the real `DATABASE_URL`.
 
+In Neon, use the pooled connection string, not the browser-safe connection snippet. It should look like:
+
+```text
+postgresql://USER:PASSWORD@HOST.neon.tech/DATABASE?sslmode=require
+```
+
 ## Endpoints
 
 `GET /api/poll`
@@ -57,6 +63,14 @@ If the API is deployed elsewhere, add this before `chatbot.js` / gallery scripts
 </script>
 ```
 
+For GitHub Pages plus a separate API host, this is the expected production shape:
+
+```text
+https://teocuitlatl.com/gallery.html
+  -> https://your-api-host.example.com/api/poll
+  -> Neon Postgres
+```
+
 ## Current Status
 
 GitHub Pages cannot run serverless functions. Deploy the API folder to Vercel, Netlify, or another serverless host, then point the gallery to that endpoint with `window.MEXICA_POLL_API_URL`.
@@ -68,3 +82,7 @@ Recommended first deployment:
 3. Add `DATABASE_URL` and `ALLOWED_ORIGINS` in the Vercel project environment variables.
 4. Test `https://your-vercel-app.vercel.app/api/health`.
 5. Set the gallery API URL to `https://your-vercel-app.vercel.app/api/poll`.
+
+## Current Blocker
+
+The code is ready, but the live database cannot be connected without the private `DATABASE_URL` and a serverless host where that secret can live. GitHub Pages is still fine for the public website; it just should not hold database credentials.
