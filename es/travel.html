@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hub de Viajes por México | Project Mexica</title>
+  <meta name="description" content="Mapa de rutas por México, cenotes, aeropuertos, sitios patrimoniales, pasaportes, FMM y herramientas útiles para viajeros.">
+  <link rel="canonical" href="https://teocuitlatl.com/es/travel.html">
+  <meta property="og:title" content="Hub de Viajes por México | Project Mexica">
+  <meta property="og:description" content="Mapa de rutas, cenotes, aeropuertos, sitios patrimoniales y conceptos de insignias de Project Mexica.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://teocuitlatl.com/es/travel.html">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../chatbot.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="./index.html"><span></span>Project Mexica</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menú de navegación"><span></span><span></span><span></span></button>
+    <nav id="site-menu">
+      <a href="./index.html#how">Cómo funciona</a>
+      <a href="./index.html#routes">Rutas</a>
+      <a href="./gallery.html">Galería</a>
+      <a href="./partners.html">Aliados</a>
+      <a class="lang-switch" href="../travel.html">EN</a>
+      <a class="mobile-menu-cta" href="./partners.html">Aliados</a>
+    </nav>
+    <a class="nav-cta" href="./partners.html">Aliados</a>
+  </header>
+
+  <main>
+    <section class="travel-hero">
+      <div>
+        <p class="eyebrow">Hub de Viajes por México</p>
+        <h1>Traza el camino. Guarda la prueba.</h1>
+        <p class="lede">Explora rutas patrimoniales, cenotes, aeropuertos, pueblos, documentos útiles y futuros conceptos de insignias. Esta página es información de viaje y narrativa de prototipo, no una página de inversión.</p>
+        <div class="hero-actions">
+          <a class="primary" href="#mexico-map">Abrir mapa</a>
+          <a class="secondary" href="./gallery.html">Votar medallones</a>
+        </div>
+      </div>
+      <aside class="travel-hero-panel">
+        <span>Rutas concepto</span>
+        <strong>MIC + CEN + Teotihuacán</strong>
+        <p>Conecta la planeación de viaje con insignias, contexto cultural y futuras oportunidades para aliados.</p>
+      </aside>
+    </section>
+
+    <section id="mexico-map" class="section travel-map-section">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Mapa interactivo</p>
+          <h2>México como red de rutas.</h2>
+        </div>
+        <p>Filtra por patrimonio, cenotes, ciudades, aeropuertos y rutas conceptuales de Project Mexica.</p>
+      </div>
+      <div class="map-shell">
+        <div class="map-toolbar" aria-label="Filtros del mapa">
+          <button type="button" data-filter="all" class="active">Todo</button>
+          <button type="button" data-filter="route">Rutas</button>
+          <button type="button" data-filter="heritage">Patrimonio</button>
+          <button type="button" data-filter="cenote">Cenotes</button>
+          <button type="button" data-filter="city">Ciudades</button>
+          <button type="button" data-filter="airport">Aeropuertos</button>
+        </div>
+        <div class="map-layout">
+          <div id="travelMap" class="travel-map" aria-label="Mapa interactivo de sitios de viaje por México"></div>
+          <aside class="map-detail" id="mapDetail">
+            <p class="eyebrow">Lugar seleccionado</p>
+            <h3>Capa de viaje México</h3>
+            <p>Toca un marcador para ver notas de viaje, contexto de ruta y por qué el lugar pertenece al mundo Project Mexica.</p>
+            <dl>
+              <div><dt>Uso prototipo</dt><dd>Descubrimiento de viajes, insignias y planeación de rutas para aliados.</dd></div>
+              <div><dt>Futuros enlaces</dt><dd>Hoteles, guías, transporte, tours, eSIM y seguros con divulgación clara.</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </div>
+      <p class="map-privacy-note">Los mosaicos del mapa se cargan desde infraestructura pública de OpenStreetMap. Project Mexica no controla esas solicitudes de terceros.</p>
+    </section>
+
+    <section class="section travel-admin">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Trámites útiles</p>
+          <h2>Pasaporte, FMM y enlaces oficiales.</h2>
+        </div>
+        <p>Puntos de partida para viajeros desde EE. UU., mexicanos en el exterior y personas con doble nacionalidad. Verifica siempre los requisitos actuales en fuentes oficiales.</p>
+      </div>
+      <div class="admin-grid">
+        <article>
+          <span>Mexicanos en EE. UU.</span>
+          <h3>Pasaporte mexicano</h3>
+          <p>El pasaporte mexicano es para personas mexicanas, incluyendo dobles nacionales elegibles. Normalmente las citas se agendan por Mi Consulado o en el consulado correspondiente.</p>
+          <a href="https://www.miconsulado.sre.gob.mx/" target="_blank" rel="noopener noreferrer">Abrir Mi Consulado</a>
+        </article>
+        <article>
+          <span>Entrada terrestre</span>
+          <h3>Forma Migratoria Múltiple</h3>
+          <p>El portal oficial del INM cubre la FMM para viajeros elegibles. Los requisitos pueden variar por nacionalidad, ruta y motivo de viaje.</p>
+          <a href="https://www.inm.gob.mx/fmme/" target="_blank" rel="noopener noreferrer">Abrir portal FMM</a>
+        </article>
+        <article>
+          <span>Viajeros desde EE. UU.</span>
+          <h3>Alertas de viaje</h3>
+          <p>Consulta la página del Departamento de Estado para avisos de seguridad, recordatorios de entrada y guía por estado antes de armar itinerario.</p>
+          <a href="https://travel.state.gov/en/international-travel/travel-advisories/mexico.html" target="_blank" rel="noopener noreferrer">Abrir aviso de México</a>
+        </article>
+        <article>
+          <span>Cruce frecuente</span>
+          <h3>SENTRI / Global Entry</h3>
+          <p>Los viajeros frecuentes pueden revisar programas oficiales de DHS. Elegibilidad, entrevistas y carriles son gestionados por autoridades gubernamentales.</p>
+          <a href="https://ttp.dhs.gov/" target="_blank" rel="noopener noreferrer">Abrir Trusted Traveler Programs</a>
+        </article>
+      </div>
+      <p class="official-note">Esta sección es información general de viaje, no asesoría legal ni migratoria. Project Mexica no está afiliado con SRE, INM, el Departamento de Estado ni ninguna agencia gubernamental.</p>
+    </section>
+
+    <section class="section travel-info">
+      <p class="eyebrow">Dinero de viaje</p>
+      <h2>Bancos, remesas y dólares digitales, sin vender humo.</h2>
+      <div class="travel-info-grid">
+        <article>
+          <h3>Bancos mexicanos</h3>
+          <p>BBVA, Banorte, Santander y otros bancos pueden servir para cuentas, tarjetas o retiros, pero cualquier relación comercial debe confirmarse por escrito antes de usar logos o decir “aliado”.</p>
+        </article>
+        <article>
+          <h3>Fintech y remesas</h3>
+          <p>Bitso, Airtm, MoneyGram, Félix y otros servicios son mejores candidatos para explorar pagos transfronterizos, remesas o dólares digitales.</p>
+        </article>
+        <article>
+          <h3>Stellar / Lumens</h3>
+          <p>Stellar aparece más fuerte en remesas, USDC y rails fintech que en bancos tradicionales mexicanos. La ruta prudente es investigar alianzas fintech primero.</p>
+        </article>
+        <article>
+          <h3>Divulgación</h3>
+          <p>Si agregamos enlaces patrocinados o afiliados, deben marcarse con claridad. Project Mexica no es banco, exchange, asesor financiero ni custodio.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section travel-routes">
+      <div class="section-head">
+        <div><p class="eyebrow">Ideas de ruta</p><h2>Viajes que hacen que el prototipo se sienta real.</h2></div>
+        <p>Conceptos editoriales que pueden convertirse después en guías patrocinadas, páginas de itinerario o herramientas de viaje con afiliados.</p>
+      </div>
+      <div class="travel-route-grid">
+        <article><span class="badge">MIC</span><h3>Fin de semana en Pátzcuaro</h3><p>Morelia, Pátzcuaro, Janitzio, El Estribo Grande, comida local y una insignia MIC con paradas repetibles.</p></article>
+        <article><span class="badge">CEN</span><h3>Circuito de cenotes en Cancún</h3><p>Cancún, Puerto Morelos, Ruta de los Cenotes, Tulum, Cobá, Valladolid y una ruta CEN de varios viajes.</p></article>
+        <article><span class="badge">SOL</span><h3>Amanecer en Teotihuacán</h3><p>Ciudad de México, contexto de Tenochtitlán, Pirámide del Sol, Pirámide de la Luna y futuro concepto de medallón.</p></article>
+      </div>
+    </section>
+
+    <section class="section partner-safe">
+      <p class="eyebrow">Importante</p>
+      <h2>El contenido de viajes no es promoción de tokens.</h2>
+      <p>Este hub es informativo y editorial. Project Mexica sigue siendo un prototipo/demo en testnet. TOM, TEO, MIC y CEN son conceptos de producto y activos demo, no moneda de curso legal, no valores, no recompensas canjeables por efectivo y no promesas de rendimiento.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Project Mexica es un prototipo/demo en testnet. El contenido de viajes es informativo y puede incluir enlaces afiliados claramente marcados en el futuro. Nada aquí es consejo de inversión, consejo financiero ni promesa de rendimiento. <a href="./privacy.html">Aviso de privacidad</a>.</p>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>window.MEXICA_ASSET_BASE = "../assets";</script>
+  <script src="../chatbot.js"></script>
+  <script>
+    const places = [
+      { name: "Centro Histórico / Tenochtitlán", type: "heritage", badge: "HER", coords: [19.4326, -99.1332], summary: "Centro ceremonial y memoria viva de Tenochtitlán.", route: "Sol y Luna", airport: "AICM / AIFA" },
+      { name: "Teotihuacán", type: "heritage", badge: "SOL", coords: [19.6925, -98.8438], summary: "Pirámides del Sol y la Luna.", route: "Ruta Teotihuacán", airport: "AICM / AIFA" },
+      { name: "Aeropuerto CDMX", type: "airport", badge: "MEX", coords: [19.4361, -99.0719], summary: "Ancla aérea para rutas del centro.", route: "Entrada principal", airport: "MEX" },
+      { name: "Lago de Pátzcuaro", type: "route", badge: "MIC", coords: [19.575, -101.65], summary: "Lago, pueblos, miradores y ruta MIC.", route: "Michoacán", airport: "Morelia" },
+      { name: "Janitzio", type: "heritage", badge: "MIC", coords: [19.5739, -101.6536], summary: "Isla, mirador y memoria lacustre.", route: "Michoacán", airport: "Morelia" },
+      { name: "Cancún", type: "city", badge: "CEN", coords: [21.1619, -86.8515], summary: "Base urbana para cenotes y Caribe.", route: "Cenote Cancún", airport: "CUN" },
+      { name: "Aeropuerto Cancún", type: "airport", badge: "CUN", coords: [21.0365, -86.8771], summary: "Entrada principal a Quintana Roo.", route: "Cenote Cancún", airport: "CUN" },
+      { name: "Puerto Morelos", type: "cenote", badge: "CEN", coords: [20.8489, -86.8759], summary: "Punto ideal para Ruta de los Cenotes.", route: "Cenote Cancún", airport: "CUN" },
+      { name: "Ruta de los Cenotes", type: "cenote", badge: "CEN", coords: [20.866, -87.03], summary: "Camino de cenotes y selva.", route: "Cenote Cancún", airport: "CUN" },
+      { name: "Tulum", type: "heritage", badge: "CEN", coords: [20.2114, -87.4654], summary: "Ruinas frente al Caribe.", route: "Cenote Cancún", airport: "Tulum / Cancún" },
+      { name: "Chichén Itzá", type: "heritage", badge: "HER", coords: [20.6843, -88.5678], summary: "Sitio maya mayor y ancla de Yucatán.", route: "Yucatán", airport: "Mérida / Cancún" },
+      { name: "Oaxaca", type: "city", badge: "OAX", coords: [17.0732, -96.7266], summary: "Cultura, cocina y rutas de sierra.", route: "Oaxaca", airport: "OAX" },
+      { name: "Monte Albán", type: "heritage", badge: "HER", coords: [17.0469, -96.7670], summary: "Sitio zapoteca sobre el valle.", route: "Oaxaca", airport: "OAX" },
+      { name: "Palenque", type: "heritage", badge: "HER", coords: [17.4848, -92.0469], summary: "Selva, arquitectura maya y ruta sur.", route: "Chiapas", airport: "Villahermosa / Palenque" }
+    ];
+    const routeColors = { MIC: "#d3a33e", CEN: "#10b7a5", SOL: "#f6cf6b", HER: "#f7f2e6", MEX: "#95a8ff", CUN: "#4ac7f0", OAX: "#d87845" };
+    const map = L.map("travelMap", { scrollWheelZoom: false }).setView([23.6, -102.5], 5);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", { maxZoom: 18, attribution: "&copy; OpenStreetMap contributors" }).addTo(map);
+    const detail = document.getElementById("mapDetail");
+    const markers = places.map(place => {
+      const marker = L.circleMarker(place.coords, { radius: 8, color: routeColors[place.badge] || "#d3a33e", weight: 2, fillColor: routeColors[place.badge] || "#d3a33e", fillOpacity: 0.86 }).addTo(map);
+      marker.bindTooltip(`${place.badge} · ${place.name}`);
+      marker.on("click", () => selectPlace(place, marker));
+      return { marker, place };
+    });
+    [["MIC", ["Lago de Pátzcuaro", "Janitzio"]], ["CEN", ["Cancún", "Puerto Morelos", "Ruta de los Cenotes", "Tulum"]], ["SOL", ["Centro Histórico / Tenochtitlán", "Teotihuacán"]]].forEach(([badge, names]) => {
+      const coords = names.map(name => places.find(place => place.name === name)?.coords).filter(Boolean);
+      L.polyline(coords, { color: routeColors[badge], weight: 3, opacity: 0.62, dashArray: "8 9" }).addTo(map);
+    });
+    function selectPlace(place, marker) {
+      detail.innerHTML = `<p class="eyebrow">${place.badge} · ${place.type}</p><h3>${place.name}</h3><p>${place.summary}</p><dl><div><dt>Ruta</dt><dd>${place.route}</dd></div><div><dt>Aeropuerto cercano</dt><dd>${place.airport}</dd></div><div><dt>Uso futuro</dt><dd>Guía editorial, insignia conceptual, enlace de aliado o ruta patrocinada con divulgación clara.</dd></div></dl>`;
+      marker.openTooltip();
+    }
+    document.querySelectorAll("[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        const filter = button.dataset.filter;
+        document.querySelectorAll("[data-filter]").forEach(item => item.classList.toggle("is-active", item === button));
+        markers.forEach(({ marker, place }) => {
+          const show = filter === "all" || place.type === filter || (filter === "route" && ["MIC", "CEN", "SOL"].includes(place.badge));
+          if (show && !map.hasLayer(marker)) marker.addTo(map);
+          if (!show && map.hasLayer(marker)) map.removeLayer(marker);
+        });
+      });
+    });
+  </script>
+  <script src="./nav.js"></script>
+</body>
+</html>

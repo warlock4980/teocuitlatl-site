@@ -87,6 +87,24 @@ a {
   color: var(--muted);
 }
 
+.nav nav a.lang-switch {
+  min-width: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(247, 242, 230, 0.18);
+  border-radius: 999px;
+  color: var(--paper);
+  font-weight: 950;
+}
+
+.nav nav a.lang-switch:hover,
+.nav nav a.lang-switch:focus-visible {
+  border-color: rgba(226, 182, 70, 0.7);
+  color: var(--gold);
+}
+
 .mobile-menu-cta {
   display: none;
 }

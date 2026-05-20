@@ -1,5 +1,7 @@
 (() => {
   const chatApiUrl = window.MEXICA_CHAT_API_URL || "https://teocuitlatl-poll-api.vercel.app/api/chat";
+  const assetBase = window.MEXICA_ASSET_BASE || "./assets";
+  const isSpanishPage = document.documentElement.lang.toLowerCase().startsWith("es");
 
   const responses = [
     {
@@ -52,21 +54,72 @@
     }
   ];
 
-  const starterMessages = [
-    "Welcome to Project Mexica. I can explain TOM, TEO, badges, routes, medallions, or partner pilots.",
-    "Try: What is TEO? How do badges work? What is the Cenote route?"
+  const responsesEs = [
+    {
+      keys: ["tom", "pago", "pagar", "estable", "peso", "tomín", "tomin"],
+      text: "TOM es el concepto de flujo de pago: pagos sencillos con sensación estable para demos y futuros pilotos. En este sitio, TOM se presenta como activo de prototipo/testnet, no como inversión ni moneda de curso legal."
+    },
+    {
+      keys: ["teo", "oro", "recompensa", "recompensas", "ganar", "teōcuitlatl", "teocuitlatl"],
+      text: "TEO es el concepto de recompensa por ruta. La idea: visitar lugares reales, completar rutas y recibir eventos visibles de recompensa. TEO aparece aquí como demo/testnet, no como promesa de ganancias."
+    },
+    {
+      keys: ["insignia", "badge", "mic", "cen", "prueba", "comprobar"],
+      text: "Las insignias prueban que estuviste ahí. MIC es la insignia de la ruta Michoacán / Lago de Pátzcuaro. CEN es la insignia del concepto Cenote Cancún Adventure. Son conceptos de prueba para rutas completadas."
+    },
+    {
+      keys: ["michoacan", "michoacán", "janitzio", "patzcuaro", "pátzcuaro", "estribo", "mirador"],
+      text: "La ruta de Michoacán conecta Janitzio y El Estribo Grande, cerca del Lago de Pátzcuaro. El desbloqueo conceptual de la ruta es MIC: Insignia de Michoacán."
+    },
+    {
+      keys: ["cancun", "cancún", "cenote", "cenotes", "aventura", "quintana"],
+      text: "Cenote Cancún Adventure es un concepto de ruta con varias paradas cerca de Cancún y Puerto Morelos. Está pensado para viajes repetibles, progreso de ruta y un momento grande de insignia CEN."
+    },
+    {
+      keys: ["socio", "aliado", "patrocinador", "piloto", "hotel", "turismo", "comercio"],
+      text: "Para socios, Project Mexica se presenta como piloto comercial: patrocinios de ruta, campañas locales, activaciones turísticas y demos de flujo de pago. No es una venta de tokens. Página de pilotos: https://teocuitlatl.com/es/partners.html"
+    },
+    {
+      keys: ["viaje", "viajar", "mapa", "pasaporte", "fmm", "entrada", "aeropuerto", "hotel", "itinerario", "sentri"],
+      text: "El Hub de Viajes por México reúne mapa, rutas, aeropuertos, cenotes, sitios patrimoniales y enlaces oficiales como Mi Consulado, INM/FMM y programas SENTRI/Global Entry. Verifica requisitos en fuentes oficiales .gob.mx: https://teocuitlatl.com/es/travel.html"
+    },
+    {
+      keys: ["propina", "tip", "donar", "donación", "apoyar", "xrp", "qr"],
+      text: "La propina voluntaria está en la galería: https://teocuitlatl.com/es/gallery.html#support Es apoyo al creador solamente. No es inversión, venta de tokens, pago de socio ni compra de TOM, TEO, insignias o medallones."
+    },
+    {
+      keys: ["moneda", "medallón", "medallon", "galería", "galeria", "votar", "sol", "luna", "plata", "oro"],
+      text: "El arte de monedas es arte conceptual conmemorativo. La firma visual es Sol y Luna, con conceptos como Tenochtitlán y Moctezuma en la galería. Vota aquí: https://teocuitlatl.com/es/gallery.html"
+    },
+    {
+      keys: ["legal", "inversión", "inversion", "comprar", "venta", "ganancias", "rendimiento", "retornos"],
+      text: "Importante: esto es un prototipo/demo en testnet. Nada aquí es consejo de inversión, oferta de valores, promesa de rendimientos, moneda de curso legal ni venta pública de tokens."
+    },
+    {
+      keys: ["privacidad", "datos", "borrar", "eliminar", "remover", "opt out", "reset"],
+      text: "Para privacidad o eliminación de datos, visita https://teocuitlatl.com/es/privacy.html. Para quitar tu voto desde este navegador, abre la galería y usa Reset my vote: https://teocuitlatl.com/es/gallery.html#vote"
+    }
   ];
 
-  const prompts = [
-    "What is TEO?",
-    "How do badges work?",
-    "Cenote route",
-    "Partner pilots"
-  ];
+  const activeResponses = isSpanishPage ? responsesEs : responses;
+
+  const starterMessages = isSpanishPage
+    ? [
+        "Bienvenido a Project Mexica. Puedo explicarte TOM, TEO, insignias, rutas, medallones, viajes o pilotos comerciales.",
+        "Prueba: ¿Qué es TEO? ¿Cómo funcionan las insignias? ¿Qué ruta empieza en Cancún?"
+      ]
+    : [
+        "Welcome to Project Mexica. I can explain TOM, TEO, badges, routes, medallions, or partner pilots.",
+        "Try: What is TEO? How do badges work? What is the Cenote route?"
+      ];
+
+  const prompts = isSpanishPage
+    ? ["¿Qué es TEO?", "¿Cómo funcionan las insignias?", "Ruta de cenotes", "Pilotos para socios"]
+    : ["What is TEO?", "How do badges work?", "Cenote route", "Partner pilots"];
 
   function findReply(message) {
     const text = message.toLowerCase();
-    const match = responses.find(item => item.keys.some(key => text.includes(key)));
+    const match = activeResponses.find(item => item.keys.some(key => text.includes(key)));
     if (match) return match.text;
     return null; // no FAQ match — caller falls through to /api/chat LLM endpoint
   }
@@ -145,13 +198,13 @@
     launcher.setAttribute("aria-label", "Open Project Mexica guide");
     launcher.innerHTML = `
       <span class="mexica-chat-hints" aria-hidden="true">
-        <span>What is TEO?</span>
-        <span>Pick top 3 coins</span>
-        <span>Partner pilots</span>
+        <span>${isSpanishPage ? "¿Qué es TEO?" : "What is TEO?"}</span>
+        <span>${isSpanishPage ? "Vota top 3" : "Pick top 3 coins"}</span>
+        <span>${isSpanishPage ? "Pilotos para socios" : "Partner pilots"}</span>
       </span>
       <span class="mexica-chat-coin" aria-hidden="true">
-        <span class="mexica-chat-face front"><img src="./assets/medallions/pyramid-sun-gold.png" alt=""></span>
-        <span class="mexica-chat-face back"><img src="./assets/medallions/pyramid-moon-silver.png" alt=""></span>
+        <span class="mexica-chat-face front"><img src="${assetBase}/medallions/pyramid-sun-gold.png" alt=""></span>
+        <span class="mexica-chat-face back"><img src="${assetBase}/medallions/pyramid-moon-silver.png" alt=""></span>
       </span>
     `;
 
@@ -160,10 +213,10 @@
     panel.setAttribute("aria-label", "Project Mexica guide");
     panel.innerHTML = `
       <header class="mexica-chat-header">
-        <span class="mexica-chat-mini-coin" aria-hidden="true"><img src="./assets/hero/forge-coin-cutout.png" alt=""></span>
+        <span class="mexica-chat-mini-coin" aria-hidden="true"><img src="${assetBase}/hero/forge-coin-cutout.png" alt=""></span>
         <span class="mexica-chat-title">
           <strong>Mexica Guide</strong>
-          <span>TOM pays. TEO rewards. Badges prove you were there.</span>
+          <span>${isSpanishPage ? "TOM paga. TEO recompensa. Las insignias prueban el camino." : "TOM pays. TEO rewards. Badges prove you were there."}</span>
         </span>
         <button class="mexica-chat-expand" type="button" aria-label="Expand chat window" aria-expanded="false">
           <span class="mexica-expand-open" aria-hidden="true">+</span>
@@ -175,10 +228,10 @@
       <div class="mexica-chat-body" role="log" aria-live="polite"></div>
       <div class="mexica-chat-prompts"></div>
       <form class="mexica-chat-input-row">
-        <input class="mexica-chat-input" type="text" autocomplete="off" placeholder="Ask about routes, badges, TOM, TEO...">
-        <button class="mexica-chat-send" type="submit">Send</button>
+        <input class="mexica-chat-input" type="text" autocomplete="off" placeholder="${isSpanishPage ? "Pregunta sobre rutas, insignias, TOM, TEO..." : "Ask about routes, badges, TOM, TEO..."}">
+        <button class="mexica-chat-send" type="submit">${isSpanishPage ? "Enviar" : "Send"}</button>
       </form>
-      <div class="mexica-chat-note">Prototype guide. Not financial advice, not investment advice, and not a token sale.</div>
+      <div class="mexica-chat-note">${isSpanishPage ? "Guía de prototipo. No es consejo financiero, consejo de inversión ni venta de tokens." : "Prototype guide. Not financial advice, not investment advice, and not a token sale."}</div>
     `;
 
     document.body.append(launcher, panel);
