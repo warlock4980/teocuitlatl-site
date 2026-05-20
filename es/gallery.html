@@ -50,8 +50,8 @@
           <div><span>Ruta MIC</span><h3>Lago de Pátzcuaro</h3><p>Janitzio, El Mirador, pescadores, flores y nostalgia purépecha.</p><button type="button">Votar por este</button></div>
         </article>
         <article data-coin="cenote">
-          <img src="../assets/gallery/cenote-cancun.png" alt="Medallón Cenote Cancún Adventure">
-          <div><span>Ruta CEN</span><h3>Cenote Cancún Adventure</h3><p>Cenotes turquesa, selva, ruinas, faro y marcadores de ruta.</p><button type="button">Votar por este</button></div>
+          <img src="../assets/gallery/cenote-cancun.png" alt="Medallón Aventura de Cenotes en Cancún">
+          <div><span>Ruta CEN</span><h3>Aventura de Cenotes en Cancún</h3><p>Cenotes turquesa, selva, ruinas, faro y marcadores de ruta.</p><button type="button">Votar por este</button></div>
         </article>
         <article data-coin="sun">
           <img src="../assets/gallery/sun-gold-detailed.png" alt="Medallón dorado Pirámide del Sol">
@@ -105,7 +105,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Estos son conceptos conmemorativos. No son moneda de curso legal, no están a la venta y no son productos de inversión. Project Mexica es un prototipo/demo en testnet. <a href="./privacy.html">Aviso de privacidad</a>.</p>
+    <p>Estos son conceptos conmemorativos. No son moneda de curso legal, no están a la venta y no son productos de inversión. Project Mexica es un prototipo en red de prueba. <a href="./privacy.html">Aviso de privacidad</a>.</p>
   </footer>
   <script>window.MEXICA_ASSET_BASE = "../assets";</script>
   <script src="../chatbot.js"></script>
@@ -138,7 +138,7 @@
         const selected = picks.includes(card.dataset.coin);
         card.classList.toggle('selected', selected);
         const rank = picks.indexOf(card.dataset.coin) + 1;
-        card.querySelector('button').textContent = selected ? `Pick ${rank} de ${maxPicks}` : 'Agregar al top 3';
+        card.querySelector('button').textContent = selected ? `Selección ${rank} de ${maxPicks}` : 'Agregar a mis favoritos';
       });
       if (!picks.length) {
         status.textContent = `${pollIsLive ? 'Encuesta conectada.' : 'Sin selección todavía.'} Elige hasta tres conceptos.`;

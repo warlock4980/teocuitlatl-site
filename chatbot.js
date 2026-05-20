@@ -57,15 +57,15 @@
   const responsesEs = [
     {
       keys: ["tom", "pago", "pagar", "estable", "peso", "tomín", "tomin"],
-      text: "TOM es el concepto de flujo de pago: pagos sencillos con sensación estable para demos y futuros pilotos. En este sitio, TOM se presenta como activo de prototipo/testnet, no como inversión ni moneda de curso legal."
+      text: "TOM es el concepto de flujo de pago: pagos sencillos con sensación estable para demostraciones y futuros pilotos. En este sitio, TOM se presenta como activo de prototipo en red de prueba, no como inversión ni moneda de curso legal."
     },
     {
       keys: ["teo", "oro", "recompensa", "recompensas", "ganar", "teōcuitlatl", "teocuitlatl"],
-      text: "TEO es el concepto de recompensa por ruta. La idea: visitar lugares reales, completar rutas y recibir eventos visibles de recompensa. TEO aparece aquí como demo/testnet, no como promesa de ganancias."
+      text: "TEO es el concepto de recompensa por ruta. La idea: visitar lugares reales, completar rutas y recibir eventos visibles de recompensa. TEO aparece aquí como activo de demostración en red de prueba, no como promesa de ganancias."
     },
     {
       keys: ["insignia", "badge", "mic", "cen", "prueba", "comprobar"],
-      text: "Las insignias prueban que estuviste ahí. MIC es la insignia de la ruta Michoacán / Lago de Pátzcuaro. CEN es la insignia del concepto Cenote Cancún Adventure. Son conceptos de prueba para rutas completadas."
+      text: "Las insignias prueban que estuviste ahí. MIC es la insignia de la ruta Michoacán / Lago de Pátzcuaro. CEN es la insignia del concepto Aventura de Cenotes en Cancún. Son conceptos de prueba para rutas completadas."
     },
     {
       keys: ["michoacan", "michoacán", "janitzio", "patzcuaro", "pátzcuaro", "estribo", "mirador"],
@@ -73,15 +73,15 @@
     },
     {
       keys: ["cancun", "cancún", "cenote", "cenotes", "aventura", "quintana"],
-      text: "Cenote Cancún Adventure es un concepto de ruta con varias paradas cerca de Cancún y Puerto Morelos. Está pensado para viajes repetibles, progreso de ruta y un momento grande de insignia CEN."
+      text: "Aventura de Cenotes en Cancún es un concepto de ruta con varias paradas cerca de Cancún y Puerto Morelos. Está pensado para viajes repetibles, progreso de ruta y un momento grande de insignia CEN."
     },
     {
       keys: ["socio", "aliado", "patrocinador", "piloto", "hotel", "turismo", "comercio"],
-      text: "Para socios, Project Mexica se presenta como piloto comercial: patrocinios de ruta, campañas locales, activaciones turísticas y demos de flujo de pago. No es una venta de tokens. Página de pilotos: https://teocuitlatl.com/es/partners.html"
+      text: "Para aliados, Project Mexica se presenta como piloto comercial: patrocinios de ruta, campañas locales, activaciones turísticas y demostraciones de flujo de pago. No es una venta de tokens. Página de pilotos: https://teocuitlatl.com/es/partners.html"
     },
     {
       keys: ["viaje", "viajar", "mapa", "pasaporte", "fmm", "entrada", "aeropuerto", "hotel", "itinerario", "sentri"],
-      text: "El Hub de Viajes por México reúne mapa, rutas, aeropuertos, cenotes, sitios patrimoniales y enlaces oficiales como Mi Consulado, INM/FMM y programas SENTRI/Global Entry. Verifica requisitos en fuentes oficiales .gob.mx: https://teocuitlatl.com/es/travel.html"
+      text: "El Centro de Viajes por México reúne mapa, rutas, aeropuertos, cenotes, sitios patrimoniales y enlaces oficiales como Mi Consulado, INM/FMM y programas SENTRI/Global Entry. Consulta requisitos, cobertura y condiciones en fuentes oficiales .gob.mx: https://teocuitlatl.com/es/travel.html"
     },
     {
       keys: ["propina", "tip", "donar", "donación", "apoyar", "xrp", "qr"],
@@ -93,11 +93,11 @@
     },
     {
       keys: ["legal", "inversión", "inversion", "comprar", "venta", "ganancias", "rendimiento", "retornos"],
-      text: "Importante: esto es un prototipo/demo en testnet. Nada aquí es consejo de inversión, oferta de valores, promesa de rendimientos, moneda de curso legal ni venta pública de tokens."
+      text: "Importante: esto es un prototipo en red de prueba. Nada aquí es consejo de inversión, oferta de valores, promesa de rendimientos, moneda de curso legal ni venta pública de tokens."
     },
     {
       keys: ["privacidad", "datos", "borrar", "eliminar", "remover", "opt out", "reset"],
-      text: "Para privacidad o eliminación de datos, visita https://teocuitlatl.com/es/privacy.html. Para quitar tu voto desde este navegador, abre la galería y usa Reset my vote: https://teocuitlatl.com/es/gallery.html#vote"
+      text: "Para privacidad o eliminación de datos, visita https://teocuitlatl.com/es/privacy.html. Para quitar tu voto desde este navegador, abre la galería y usa Reiniciar mi voto: https://teocuitlatl.com/es/gallery.html#vote"
     }
   ];
 
@@ -199,7 +199,7 @@
     launcher.innerHTML = `
       <span class="mexica-chat-hints" aria-hidden="true">
         <span>${isSpanishPage ? "¿Qué es TEO?" : "What is TEO?"}</span>
-        <span>${isSpanishPage ? "Vota top 3" : "Pick top 3 coins"}</span>
+        <span>${isSpanishPage ? "Elige tus favoritos" : "Pick top 3 coins"}</span>
         <span>${isSpanishPage ? "Pilotos para socios" : "Partner pilots"}</span>
       </span>
       <span class="mexica-chat-coin" aria-hidden="true">
