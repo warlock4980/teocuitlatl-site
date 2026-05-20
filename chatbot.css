@@ -19,6 +19,51 @@
   display: none;
 }
 
+.mexica-chat-hints {
+  position: absolute;
+  right: 68px;
+  bottom: 18px;
+  width: 170px;
+  height: 116px;
+  pointer-events: none;
+}
+
+.mexica-chat-hints span {
+  position: absolute;
+  right: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 1px solid rgba(226, 182, 70, 0.34);
+  border-radius: 999px;
+  background: rgba(11, 15, 15, 0.86);
+  color: var(--paper, #f7f2e6);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(14px);
+  font-size: 12px;
+  font-weight: 950;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(18px, 14px) scale(0.92);
+  animation: mexica-hint-pop 10.5s ease-in-out infinite;
+}
+
+.mexica-chat-hints span:nth-child(1) {
+  bottom: 78px;
+  animation-delay: 0.8s;
+}
+
+.mexica-chat-hints span:nth-child(2) {
+  bottom: 40px;
+  animation-delay: 2.8s;
+}
+
+.mexica-chat-hints span:nth-child(3) {
+  bottom: 2px;
+  animation-delay: 4.8s;
+}
+
 .mexica-chat-coin {
   position: relative;
   width: 70px;
@@ -85,6 +130,21 @@
   }
   100% {
     transform: translateY(0) rotateY(720deg) rotateZ(0deg);
+  }
+}
+
+@keyframes mexica-hint-pop {
+  0%, 13%, 100% {
+    opacity: 0;
+    transform: translate(18px, 14px) scale(0.92);
+  }
+  18%, 32% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  38% {
+    opacity: 0;
+    transform: translate(-4px, -8px) scale(0.98);
   }
 }
 
@@ -159,7 +219,8 @@
 }
 
 .mexica-chat-close,
-.mexica-chat-clear {
+.mexica-chat-clear,
+.mexica-chat-expand {
   min-width: 34px;
   height: 34px;
   display: inline-grid;
@@ -176,6 +237,25 @@
   padding: 0 12px;
   font-size: 12px;
   font-weight: 900;
+}
+
+.mexica-chat-expand {
+  font-size: 18px;
+  font-weight: 950;
+}
+
+.mexica-chat-panel:not(.expanded) .mexica-expand-close,
+.mexica-chat-panel.expanded .mexica-expand-open {
+  display: none;
+}
+
+.mexica-chat-panel.expanded {
+  right: 22px;
+  bottom: 22px;
+  width: min(780px, calc(100vw - 44px));
+  height: min(820px, calc(100dvh - 44px));
+  max-width: none;
+  max-height: none;
 }
 
 .mexica-chat-body {
@@ -286,6 +366,28 @@
     max-height: calc(100dvh - 20px);
   }
 
+  .mexica-chat-panel.expanded {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+    max-width: none;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .mexica-chat-panel.expanded .mexica-chat-header {
+    padding-top: calc(14px + env(safe-area-inset-top));
+  }
+
+  .mexica-chat-panel.expanded .mexica-chat-note {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+
+  .mexica-chat-clear {
+    display: none;
+  }
+
   .mexica-chat-launcher {
     right: auto;
     left: 16px;
@@ -297,6 +399,35 @@
   .mexica-chat-coin {
     width: 54px;
     height: 54px;
+  }
+
+  .mexica-chat-hints {
+    left: 48px;
+    right: auto;
+    bottom: 10px;
+    width: 168px;
+    height: 94px;
+  }
+
+  .mexica-chat-hints span {
+    left: 0;
+    right: auto;
+    min-height: 28px;
+    padding: 0 10px;
+    font-size: 11px;
+    transform: translate(-12px, 12px) scale(0.92);
+  }
+
+  .mexica-chat-hints span:nth-child(1) {
+    bottom: 62px;
+  }
+
+  .mexica-chat-hints span:nth-child(2) {
+    bottom: 31px;
+  }
+
+  .mexica-chat-hints span:nth-child(3) {
+    bottom: 0;
   }
 
   .mexica-chat-send {
@@ -330,7 +461,8 @@
 @media (prefers-reduced-motion: reduce) {
   .mexica-chat-coin,
   .mexica-chat-launcher:hover .mexica-chat-coin,
-  .mexica-chat-launcher:focus-visible .mexica-chat-coin {
+  .mexica-chat-launcher:focus-visible .mexica-chat-coin,
+  .mexica-chat-hints span {
     animation: none;
     transform: none;
   }

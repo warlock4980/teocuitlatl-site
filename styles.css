@@ -19,6 +19,18 @@
   initial-value: 0deg;
 }
 
+@property --forge-lift {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --forge-scale {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -214,6 +226,20 @@ h1 {
   box-shadow: 0 38px 90px rgba(0, 0, 0, 0.45);
 }
 
+.hero-shot::before {
+  content: "";
+  position: absolute;
+  inset: 12% 8% 18%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 46%, rgba(255, 211, 104, 0.46), transparent 18%),
+    radial-gradient(circle at 50% 62%, rgba(255, 91, 34, 0.34), transparent 30%),
+    radial-gradient(circle at 50% 78%, rgba(124, 28, 10, 0.5), transparent 42%);
+  filter: blur(18px);
+  opacity: 0;
+  animation: forgeHeatBloom 3.4s ease-out 0.15s both;
+}
+
 .hero-product {
   position: sticky;
   top: 112px;
@@ -223,7 +249,81 @@ h1 {
   min-height: 560px;
 }
 
+.hero-product::before,
+.hero-product::after {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.hero-product::before {
+  width: min(78%, 520px);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle, rgba(255, 230, 132, 0.34), transparent 22%),
+    radial-gradient(circle, rgba(255, 95, 38, 0.3), transparent 48%),
+    conic-gradient(from 210deg, transparent, rgba(226, 182, 70, 0.34), rgba(255, 105, 42, 0.38), transparent);
+  filter: blur(14px);
+  opacity: 0;
+  animation: forgeRing 3.8s ease-out 0.2s both;
+}
+
+.hero-product::after {
+  width: min(92%, 620px);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(circle at 24% 28%, rgba(255, 223, 134, 0.95) 0 2px, transparent 3px),
+    radial-gradient(circle at 72% 24%, rgba(255, 130, 61, 0.92) 0 2px, transparent 3px),
+    radial-gradient(circle at 31% 78%, rgba(226, 182, 70, 0.88) 0 1px, transparent 3px),
+    radial-gradient(circle at 79% 69%, rgba(255, 210, 118, 0.8) 0 1px, transparent 3px),
+    radial-gradient(circle at 54% 18%, rgba(255, 89, 32, 0.82) 0 1px, transparent 3px);
+  opacity: 0;
+  animation: forgeSparks 2.8s ease-out 0.35s both;
+}
+
+.hero-forge-base {
+  position: absolute;
+  left: 50%;
+  bottom: 98px;
+  z-index: 0;
+  width: min(66%, 430px);
+  aspect-ratio: 2.8 / 1;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  animation: forgeBaseRise 3.4s ease-out 0.05s both;
+}
+
+.hero-forge-base::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(255, 210, 112, 0.58), rgba(117, 52, 18, 0.28) 42%, rgba(10, 14, 14, 0.1)),
+    repeating-linear-gradient(to bottom, rgba(247, 242, 230, 0.18) 0 1px, transparent 1px 12px),
+    linear-gradient(135deg, rgba(226, 182, 70, 0.64), rgba(124, 55, 20, 0.48));
+  clip-path: polygon(50% 0, 60% 17%, 57% 17%, 68% 34%, 64% 34%, 78% 52%, 73% 52%, 88% 72%, 82% 72%, 100% 100%, 0 100%, 18% 72%, 12% 72%, 27% 52%, 22% 52%, 36% 34%, 32% 34%, 43% 17%, 40% 17%);
+  filter: drop-shadow(0 22px 26px rgba(0, 0, 0, 0.42));
+}
+
+.hero-forge-base::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -8px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255, 91, 34, 0.5), transparent 68%);
+  filter: blur(8px);
+}
+
 .hero-product img {
+  --forge-lift: 0px;
+  --forge-scale: 1;
+  position: relative;
+  z-index: 1;
   display: block;
   width: min(86%, 560px);
   filter:
@@ -232,13 +332,16 @@ h1 {
   transform:
     translate3d(
       calc(var(--pointer-x) * 16px),
-      calc((var(--pointer-y) * 14px) + (var(--scroll-progress) * -36px)),
+      calc((var(--pointer-y) * 14px) + (var(--scroll-progress) * -36px) + var(--forge-lift)),
       0
     )
+    scale(var(--forge-scale))
     rotateX(calc((var(--pointer-y) * -5deg) + 1deg))
     rotateY(calc((var(--pointer-x) * 9deg) + var(--coin-turn, 0deg)))
     rotateZ(calc(var(--pointer-x) * 1.5deg));
-  animation: medallionFloat 9s ease-in-out infinite;
+  animation:
+    forgeCoinSettle 3.2s cubic-bezier(0.2, 0.72, 0.2, 1) 0.1s both,
+    medallionFloat 9s ease-in-out 3.25s infinite;
   will-change: transform, filter;
 }
 
@@ -289,7 +392,107 @@ h1 {
   }
 }
 
+@keyframes forgeCoinSettle {
+  0% {
+    --forge-lift: 42px;
+    --forge-scale: 0.82;
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  48% {
+    --forge-lift: -18px;
+    --forge-scale: 1.06;
+  }
+  72% {
+    --forge-lift: 5px;
+    --forge-scale: 0.99;
+  }
+  100% {
+    --forge-lift: 0px;
+    --forge-scale: 1;
+    opacity: 1;
+  }
+}
+
+@keyframes forgeHeatBloom {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  22% {
+    opacity: 1;
+  }
+  58% {
+    opacity: 0.74;
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.28);
+  }
+}
+
+@keyframes forgeRing {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-18deg);
+  }
+  22% {
+    opacity: 0.85;
+  }
+  62% {
+    opacity: 0.5;
+    transform: scale(1.08) rotate(18deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.24) rotate(34deg);
+  }
+}
+
+@keyframes forgeSparks {
+  0% {
+    opacity: 0;
+    transform: scale(0.74) rotate(-8deg);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.28) rotate(18deg);
+  }
+}
+
+@keyframes forgeBaseRise {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 18px) scaleX(0.88);
+  }
+  26% {
+    opacity: 0.98;
+  }
+  72% {
+    opacity: 0.82;
+    transform: translate(-50%, 0) scaleX(1);
+  }
+  100% {
+    opacity: 0.22;
+    transform: translate(-50%, 0) scaleX(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .hero-shot::before,
+  .hero-product::before,
+  .hero-product::after,
+  .hero-forge-base {
+    animation: none;
+    opacity: 0;
+  }
+
   .hero-product img {
     animation: none;
     transform: none;

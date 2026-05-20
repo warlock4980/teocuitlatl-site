@@ -72,6 +72,11 @@
     launcher.type = "button";
     launcher.setAttribute("aria-label", "Open Project Mexica guide");
     launcher.innerHTML = `
+      <span class="mexica-chat-hints" aria-hidden="true">
+        <span>What is TEO?</span>
+        <span>Pick top 3 coins</span>
+        <span>Partner pilots</span>
+      </span>
       <span class="mexica-chat-coin" aria-hidden="true">
         <span class="mexica-chat-face front"><img src="./assets/medallions/pyramid-sun-gold.png" alt=""></span>
         <span class="mexica-chat-face back"><img src="./assets/medallions/pyramid-moon-silver.png" alt=""></span>
@@ -88,6 +93,10 @@
           <strong>Mexica Guide</strong>
           <span>TOM pays. TEO rewards. Badges prove you were there.</span>
         </span>
+        <button class="mexica-chat-expand" type="button" aria-label="Expand chat window" aria-expanded="false">
+          <span class="mexica-expand-open" aria-hidden="true">+</span>
+          <span class="mexica-expand-close" aria-hidden="true">-</span>
+        </button>
         <button class="mexica-chat-clear" type="button">Clear</button>
         <button class="mexica-chat-close" type="button" aria-label="Close chat">x</button>
       </header>
@@ -105,6 +114,7 @@
     const body = panel.querySelector(".mexica-chat-body");
     const close = panel.querySelector(".mexica-chat-close");
     const clear = panel.querySelector(".mexica-chat-clear");
+    const expand = panel.querySelector(".mexica-chat-expand");
     const form = panel.querySelector("form");
     const input = panel.querySelector("input");
     const promptWrap = panel.querySelector(".mexica-chat-prompts");
@@ -122,6 +132,9 @@
 
     function closePanel() {
       panel.classList.remove("open");
+      panel.classList.remove("expanded");
+      expand.setAttribute("aria-expanded", "false");
+      expand.setAttribute("aria-label", "Expand chat window");
       launcher.classList.remove("open");
       launcher.focus();
     }
@@ -146,6 +159,12 @@
     launcher.addEventListener("click", openPanel);
     close.addEventListener("click", closePanel);
     clear.addEventListener("click", seed);
+    expand.addEventListener("click", () => {
+      const isExpanded = panel.classList.toggle("expanded");
+      expand.setAttribute("aria-expanded", String(isExpanded));
+      expand.setAttribute("aria-label", isExpanded ? "Collapse chat window" : "Expand chat window");
+      scrollToBottom(body);
+    });
     form.addEventListener("submit", event => {
       event.preventDefault();
       send(input.value);
@@ -159,6 +178,13 @@
 
     if (new URLSearchParams(window.location.search).get("chat") === "open") {
       openPanel();
+    }
+
+    if (new URLSearchParams(window.location.search).get("chat") === "expanded") {
+      openPanel();
+      panel.classList.add("expanded");
+      expand.setAttribute("aria-expanded", "true");
+      expand.setAttribute("aria-label", "Collapse chat window");
     }
   }
 

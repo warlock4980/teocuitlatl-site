@@ -1,0 +1,12 @@
+{
+  "name": "teocuitlatl-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check chatbot.js && node --check api/poll.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2"
+  }
+}

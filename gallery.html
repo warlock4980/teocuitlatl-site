@@ -132,6 +132,8 @@
     const status = document.getElementById('pollStatus');
     const cards = [...document.querySelectorAll('[data-coin]')];
     const maxPicks = 3;
+    const pollApiUrl = window.MEXICA_POLL_API_URL || '/api/poll';
+    let latestResults = null;
 
     function readPicks() {
       try {
@@ -144,6 +146,18 @@
 
     function savePicks(picks) {
       localStorage.setItem(storageKey, JSON.stringify(picks));
+    }
+
+    function resultSummary() {
+      if (!latestResults) return '';
+      const ranked = Object.entries(latestResults)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3)
+        .map(([coin, votes]) => {
+          const card = cards.find(item => item.dataset.coin === coin);
+          return card ? `${card.querySelector('h3').textContent}: ${votes}` : `${coin}: ${votes}`;
+        });
+      return ranked.length ? ` Live tally: ${ranked.join(' / ')}.` : '';
     }
 
     function applyVote(picks) {
@@ -162,11 +176,39 @@
       const names = picks
         .map(value => cards.find(card => card.dataset.coin === value)?.querySelector('h3')?.textContent)
         .filter(Boolean);
-      status.textContent = `Your top ${names.length}: ${names.join(' + ')}. ${maxPicks - names.length} pick${maxPicks - names.length === 1 ? '' : 's'} left.`;
+      status.textContent = `Your top ${names.length}: ${names.join(' + ')}. ${maxPicks - names.length} pick${maxPicks - names.length === 1 ? '' : 's'} left.${resultSummary()}`;
+    }
+
+    async function loadResults() {
+      try {
+        const response = await fetch(pollApiUrl, { headers: { Accept: 'application/json' } });
+        if (!response.ok) return;
+        const data = await response.json();
+        latestResults = data.results || null;
+        applyVote(readPicks());
+      } catch {
+        // GitHub Pages has no serverless runtime; local voting still works until the Neon API is deployed.
+      }
+    }
+
+    async function submitPicks(picks) {
+      try {
+        const response = await fetch(pollApiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ picks })
+        });
+        if (!response.ok) return;
+        const data = await response.json();
+        latestResults = data.results || latestResults;
+        applyVote(picks);
+      } catch {
+        // Keep the browser-stored prototype vote even if the API is not live yet.
+      }
     }
 
     cards.forEach(card => {
-      card.querySelector('button').addEventListener('click', () => {
+      card.querySelector('button').addEventListener('click', async () => {
         const picks = readPicks();
         const value = card.dataset.coin;
         const existing = picks.indexOf(value);
@@ -182,10 +224,12 @@
 
         savePicks(picks);
         applyVote(picks);
+        await submitPicks(picks);
       });
     });
 
     applyVote(readPicks());
+    loadResults();
 
     const menuToggle = document.querySelector('.menu-toggle');
     const siteMenu = document.querySelector('#site-menu');
