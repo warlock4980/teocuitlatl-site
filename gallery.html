@@ -48,6 +48,7 @@
 
       <div class="poll-status" id="pollStatus">No picks yet. Choose up to three concepts.</div>
       <p class="privacy-note">Voting stores your selected medallions in this browser. When the live tally is connected, the poll API will also store your picks, basic technical request data, and a hashed visitor fingerprint to reduce duplicate votes. See the <a href="./privacy.html">Privacy Notice</a>.</p>
+      <button class="poll-reset" id="resetPoll" type="button">Reset my vote</button>
 
       <div class="coin-grid" id="coinGrid">
         <article data-coin="patzcuaro">
@@ -232,6 +233,26 @@
       }
     }
 
+    async function resetVote() {
+      savePicks([]);
+      latestResults = null;
+      applyVote([]);
+
+      try {
+        const response = await fetch(pollApiUrl, {
+          method: 'DELETE',
+          headers: { Accept: 'application/json' }
+        });
+        if (!response.ok) return;
+        const data = await response.json();
+        pollIsLive = true;
+        latestResults = data.results || null;
+        status.textContent = `Your browser vote has been reset. ${data.deleted ? 'Your live poll vote was removed.' : 'No live poll vote was found for this browser.'}${resultSummary()}`;
+      } catch {
+        status.textContent = 'Your browser vote has been reset. The live poll API could not be reached from this device.';
+      }
+    }
+
     cards.forEach(card => {
       card.querySelector('button').addEventListener('click', async () => {
         const picks = readPicks();
@@ -252,6 +273,8 @@
         await submitPicks(picks);
       });
     });
+
+    document.getElementById('resetPoll').addEventListener('click', resetVote);
 
     applyVote(readPicks());
     loadResults();

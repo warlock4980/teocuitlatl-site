@@ -24,7 +24,7 @@ function setCors(req, res) {
     res.setHeader("Access-Control-Allow-Origin", origin);
     res.setHeader("Vary", "Origin");
   }
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,DELETE,OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
@@ -70,6 +70,15 @@ async function getResults(sql) {
   return Object.fromEntries(rows.map(row => [row.coin, row.votes]));
 }
 
+function getVoterHash(req) {
+  const visitorFingerprint = [
+    req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "",
+    req.headers["user-agent"] || ""
+  ].join("|");
+
+  return hash(visitorFingerprint);
+}
+
 export default async function handler(req, res) {
   setCors(req, res);
 
@@ -91,6 +100,17 @@ export default async function handler(req, res) {
     return;
   }
 
+  if (req.method === "DELETE") {
+    const deleted = await sql`
+      delete from coin_poll_votes
+      where voter_hash = ${getVoterHash(req)}
+      returning id
+    `;
+
+    res.status(200).json({ ok: true, deleted: deleted.length, results: await getResults(sql) });
+    return;
+  }
+
   if (req.method !== "POST") {
     res.status(405).json({ error: "Method not allowed." });
     return;
@@ -102,15 +122,10 @@ export default async function handler(req, res) {
     return;
   }
 
-  const visitorFingerprint = [
-    req.headers["x-forwarded-for"] || req.socket?.remoteAddress || "",
-    req.headers["user-agent"] || ""
-  ].join("|");
-
   await sql`
     insert into coin_poll_votes (voter_hash, picks, user_agent_hash, referer)
     values (
-      ${hash(visitorFingerprint)},
+      ${getVoterHash(req)},
       ${picks},
       ${hash(req.headers["user-agent"] || "")},
       ${(req.headers.referer || "").slice(0, 500)}

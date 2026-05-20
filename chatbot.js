@@ -35,6 +35,10 @@
     {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
       text: "Important: this is a prototype/testnet demonstration. Nothing here is investment advice, a securities offer, a promise of returns, legal tender, or a public token sale."
+    },
+    {
+      keys: ["privacy", "data", "delete", "remove", "opt out", "opt-out", "reset"],
+      text: "For privacy or data removal, visit https://teocuitlatl.com/privacy.html. To remove poll data from this browser, open the gallery and click Reset my vote: https://teocuitlatl.com/gallery.html#vote"
     }
   ];
 
