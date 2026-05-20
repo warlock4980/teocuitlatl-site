@@ -50,7 +50,7 @@ function getLlmConfig() {
 
   if (provider === "anthropic" || provider === "claude") {
     return {
-      provider,
+      provider: "anthropic",
       apiUrl: process.env.ANTHROPIC_API_URL || "https://api.anthropic.com/v1/messages",
       apiKey: process.env.ANTHROPIC_API_KEY || process.env.LLM_API_KEY,
       model: process.env.ANTHROPIC_MODEL || process.env.LLM_MODEL || "claude-3-5-haiku-latest"
@@ -258,7 +258,15 @@ export default async function handler(req, res) {
 
   const llmConfig = getLlmConfig();
   if (!llmConfig.apiKey || !llmConfig.model || !llmConfig.apiUrl) {
-    res.status(500).json({ error: "LLM endpoint not configured." });
+    res.status(500).json({
+      error: "LLM endpoint not configured.",
+      provider: llmConfig.provider,
+      hasApiUrl: Boolean(llmConfig.apiUrl),
+      hasApiKey: Boolean(llmConfig.apiKey),
+      hasModel: Boolean(llmConfig.model),
+      hasAnthropicKey: Boolean(process.env.ANTHROPIC_API_KEY),
+      hasOpenAiKey: Boolean(process.env.LLM_API_KEY)
+    });
     return;
   }
 
