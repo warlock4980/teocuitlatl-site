@@ -44,6 +44,156 @@ function isRateLimited(req) {
   return entry.count > RATE_LIMIT_MAX;
 }
 
+function getLlmConfig() {
+  const provider = (process.env.LLM_PROVIDER || "openai").toLowerCase();
+
+  if (provider === "anthropic") {
+    return {
+      provider,
+      apiUrl: process.env.ANTHROPIC_API_URL || "https://api.anthropic.com/v1/messages",
+      apiKey: process.env.ANTHROPIC_API_KEY || process.env.LLM_API_KEY,
+      model: process.env.ANTHROPIC_MODEL || process.env.LLM_MODEL || "claude-3-5-haiku-latest"
+    };
+  }
+
+  return {
+    provider: "openai",
+    apiUrl: process.env.LLM_API_URL || "https://api.openai.com/v1/chat/completions",
+    apiKey: process.env.LLM_API_KEY,
+    model: process.env.LLM_MODEL || "gpt-4o-mini"
+  };
+}
+
+function writeSseToken(res, token) {
+  if (!token) return;
+  res.write(`data: ${JSON.stringify({ token })}\n\n`);
+}
+
+async function streamOpenAI(config, message, res) {
+  const upstream = await fetch(config.apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${config.apiKey}`
+    },
+    body: JSON.stringify({
+      model: config.model,
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        { role: "user", content: message }
+      ],
+      max_tokens: 220,
+      temperature: 0.4,
+      stream: true
+    })
+  });
+
+  if (!upstream.ok || !upstream.body) {
+    const errorText = await upstream.text().catch(() => "");
+    throw new Error(errorText.slice(0, 240) || `OpenAI upstream ${upstream.status}`);
+  }
+
+  const reader = upstream.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let accumulated = "";
+  let upstreamDone = false;
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    let lineEnd;
+    while ((lineEnd = buffer.indexOf("\n")) !== -1) {
+      const line = buffer.slice(0, lineEnd).trim();
+      buffer = buffer.slice(lineEnd + 1);
+      if (!line.startsWith("data:")) continue;
+      const payload = line.slice(5).trim();
+      if (payload === "[DONE]") {
+        upstreamDone = true;
+        break;
+      }
+      try {
+        const json = JSON.parse(payload);
+        const token = json.choices?.[0]?.delta?.content || "";
+        if (token) {
+          accumulated += token;
+          writeSseToken(res, token);
+        }
+      } catch {
+        // Ignore non-JSON chunks.
+      }
+    }
+    if (upstreamDone) break;
+  }
+
+  return accumulated;
+}
+
+async function streamAnthropic(config, message, res) {
+  const upstream = await fetch(config.apiUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": config.apiKey,
+      "anthropic-version": "2023-06-01"
+    },
+    body: JSON.stringify({
+      model: config.model,
+      system: SYSTEM_PROMPT,
+      messages: [
+        { role: "user", content: message }
+      ],
+      max_tokens: 220,
+      temperature: 0.4,
+      stream: true
+    })
+  });
+
+  if (!upstream.ok || !upstream.body) {
+    const errorText = await upstream.text().catch(() => "");
+    throw new Error(errorText.slice(0, 240) || `Anthropic upstream ${upstream.status}`);
+  }
+
+  const reader = upstream.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  let accumulated = "";
+
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+
+    buffer += decoder.decode(value, { stream: true });
+    let eventEnd;
+    while ((eventEnd = buffer.indexOf("\n\n")) !== -1) {
+      const block = buffer.slice(0, eventEnd);
+      buffer = buffer.slice(eventEnd + 2);
+      const dataLine = block
+        .split("\n")
+        .map(line => line.trim())
+        .find(line => line.startsWith("data:"));
+      if (!dataLine) continue;
+
+      try {
+        const json = JSON.parse(dataLine.slice(5).trim());
+        if (json.type === "content_block_delta") {
+          const token = json.delta?.text || "";
+          if (token) {
+            accumulated += token;
+            writeSseToken(res, token);
+          }
+        }
+      } catch {
+        // Ignore non-JSON chunks.
+      }
+    }
+  }
+
+  return accumulated;
+}
+
 // Ensures chat_log table exists. Idempotent; safe to call every request.
 async function ensureChatLog(sql) {
   await sql`
@@ -105,7 +255,8 @@ export default async function handler(req, res) {
     return;
   }
 
-  if (!process.env.LLM_API_URL || !process.env.LLM_API_KEY || !process.env.LLM_MODEL) {
+  const llmConfig = getLlmConfig();
+  if (!llmConfig.apiKey || !llmConfig.model || !llmConfig.apiUrl) {
     res.status(500).json({ error: "LLM endpoint not configured." });
     return;
   }
@@ -129,69 +280,12 @@ export default async function handler(req, res) {
   let responseAccumulated = "";
 
   try {
-    const upstream = await fetch(process.env.LLM_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.LLM_API_KEY}`
-      },
-      body: JSON.stringify({
-        model: process.env.LLM_MODEL,
-        messages: [
-          { role: "system", content: SYSTEM_PROMPT },
-          { role: "user", content: message }
-        ],
-        max_tokens: 220,
-        temperature: 0.4,
-        stream: true
-      })
-    });
-
-    if (!upstream.ok || !upstream.body) {
-      const errorText = await upstream.text().catch(() => "");
-      res.write(`data: ${JSON.stringify({ error: "upstream-failed", detail: errorText.slice(0, 200) })}\n\n`);
-      res.write("data: [DONE]\n\n");
-      res.end();
-      return;
-    }
-
-    const reader = upstream.body.getReader();
-    const decoder = new TextDecoder();
-    let buffer = "";
-    let upstreamDone = false;
-
-    while (true) {
-      const { done, value } = await reader.read();
-      if (done) break;
-
-      buffer += decoder.decode(value, { stream: true });
-      let lineEnd;
-      while ((lineEnd = buffer.indexOf("\n")) !== -1) {
-        const line = buffer.slice(0, lineEnd).trim();
-        buffer = buffer.slice(lineEnd + 1);
-        if (!line.startsWith("data:")) continue;
-        const payload = line.slice(5).trim();
-        if (payload === "[DONE]") {
-          upstreamDone = true;
-          break;
-        }
-        try {
-          const json = JSON.parse(payload);
-          const token = json.choices?.[0]?.delta?.content || "";
-          if (token) {
-            responseAccumulated += token;
-            res.write(`data: ${JSON.stringify({ token })}\n\n`);
-          }
-        } catch {
-          // Ignore non-JSON chunks (keep-alive comments, etc.)
-        }
-      }
-      if (upstreamDone) break;
-    }
-
+    responseAccumulated = llmConfig.provider === "anthropic"
+      ? await streamAnthropic(llmConfig, message, res)
+      : await streamOpenAI(llmConfig, message, res);
     res.write("data: [DONE]\n\n");
   } catch (err) {
-    res.write(`data: ${JSON.stringify({ error: "stream-failed", detail: String(err).slice(0, 200) })}\n\n`);
+    res.write(`data: ${JSON.stringify({ error: "upstream-failed", detail: String(err).slice(0, 240) })}\n\n`);
     res.write("data: [DONE]\n\n");
   }
 
