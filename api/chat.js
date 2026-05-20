@@ -45,9 +45,10 @@ function isRateLimited(req) {
 }
 
 function getLlmConfig() {
-  const provider = (process.env.LLM_PROVIDER || "openai").toLowerCase();
+  const providerRaw = (process.env.LLM_PROVIDER || "").trim().toLowerCase();
+  const provider = providerRaw || (process.env.ANTHROPIC_API_KEY ? "anthropic" : "openai");
 
-  if (provider === "anthropic") {
+  if (provider === "anthropic" || provider === "claude") {
     return {
       provider,
       apiUrl: process.env.ANTHROPIC_API_URL || "https://api.anthropic.com/v1/messages",
