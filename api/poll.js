@@ -8,7 +8,9 @@ const allowedCoins = new Set([
   "moon",
   "septiembre",
   "zapata",
-  "alcubierre"
+  "alcubierre",
+  "moctezuma",
+  "tenochtitlan"
 ]);
 
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || "https://teocuitlatl.com,http://teocuitlatl.com")

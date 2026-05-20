@@ -26,7 +26,11 @@
     },
     {
       keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold"],
-      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon: gold Pyramid of the Sun, silver Pyramid of the Moon, plus route medallions for places people can actually visit. Vote here: https://teocuitlatl.com/gallery.html"
+      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlan and Moctezuma joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
+    },
+    {
+      keys: ["moctezuma", "tenochtitlan", "heritage"],
+      text: "The heritage medallions are commemorative concept art: Tenochtitlan shows the lake city at full scale, while Moctezuma is framed as a dignified ruler motif. They are not legal tender or investment products. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
