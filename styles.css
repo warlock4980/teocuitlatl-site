@@ -226,6 +226,49 @@ h1 {
   box-shadow: 0 38px 90px rgba(0, 0, 0, 0.45);
 }
 
+@media (min-width: 901px) and (max-height: 820px) {
+  .hero {
+    min-height: calc(100dvh - 74px);
+    padding-top: 32px;
+    padding-bottom: 24px;
+  }
+
+  .hero-shot {
+    justify-content: flex-start;
+    padding-top: 18px;
+  }
+
+  .hero-product {
+    top: 84px;
+    min-height: min(54vh, 430px);
+  }
+
+  .hero-product img {
+    width: min(78%, 520px);
+    margin-top: -34px;
+    transform:
+      translate3d(
+        calc(var(--pointer-x) * 14px),
+        calc((var(--pointer-y) * 10px) + (var(--scroll-progress) * -30px) + var(--forge-lift) - 108px),
+        0
+      )
+      scale(var(--forge-scale))
+      rotateX(calc((var(--pointer-y) * -4deg) + 1deg))
+      rotateY(calc((var(--pointer-x) * 7deg) + var(--coin-turn, 0deg)))
+      rotateZ(calc(var(--pointer-x) * 1.2deg));
+  }
+
+  .hero-forge-base {
+    bottom: 58px;
+  }
+
+  .hero-product-caption {
+    position: relative;
+    z-index: 2;
+    margin-top: -4px;
+  }
+}
+
 .hero-shot::before {
   content: "";
   position: absolute;
@@ -1156,20 +1199,20 @@ figcaption {
   .hero-product {
     position: relative;
     top: auto;
-    min-height: clamp(250px, 68vw, 320px);
+    min-height: clamp(285px, 72vw, 352px);
     align-items: start;
     padding-top: 4px;
     padding-bottom: 18px;
   }
 
   .hero-forge-base {
-    bottom: 38px;
-    width: min(62%, 280px);
+    bottom: 44px;
+    width: min(64%, 310px);
   }
 
   .hero-product img {
-    width: min(80%, 300px);
-    margin-top: -6px;
+    width: min(86%, 340px);
+    margin-top: -12px;
     transform:
       translate3d(
         calc(var(--pointer-x) * 8px),
@@ -1214,16 +1257,16 @@ figcaption {
   }
 
   .hero-product {
-    min-height: clamp(220px, 64vw, 282px);
+    min-height: clamp(254px, 68vw, 320px);
     padding-bottom: 12px;
   }
 
   .hero-product img {
-    width: min(78%, 262px);
+    width: min(84%, 312px);
   }
 
   .hero-forge-base {
-    bottom: 34px;
-    width: min(60%, 230px);
+    bottom: 38px;
+    width: min(62%, 270px);
   }
 }

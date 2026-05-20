@@ -278,6 +278,18 @@
   line-height: 1.45;
 }
 
+.mexica-msg a {
+  color: var(--gold, #e2b646);
+  font-weight: 900;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  overflow-wrap: anywhere;
+}
+
+.mexica-msg.user a {
+  color: #171106;
+}
+
 .mexica-msg.bot {
   align-self: flex-start;
   background: rgba(247, 242, 230, 0.08);

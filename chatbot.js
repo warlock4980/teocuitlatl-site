@@ -22,11 +22,11 @@
     },
     {
       keys: ["partner", "sponsor", "pilot", "merchant", "hotel", "tourism"],
-      text: "For partners, Project Mexica is framed as a commercial pilot: route sponsorships, local campaigns, tourism activations, and payment-flow demos. It is not a token sale. The partner page has the current pilot tiers."
+      text: "For partners, Project Mexica is framed as a commercial pilot: route sponsorships, local campaigns, tourism activations, and payment-flow demos. It is not a token sale. The partner page has the current pilot tiers: https://teocuitlatl.com/partners.html"
     },
     {
       keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold"],
-      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon: gold Pyramid of the Sun, silver Pyramid of the Moon, plus route medallions for places people can actually visit."
+      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon: gold Pyramid of the Sun, silver Pyramid of the Moon, plus route medallions for places people can actually visit. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
       keys: ["legal", "investment", "buy", "sale", "returns", "security"],
@@ -53,10 +53,44 @@
     return "I can help with TOM, TEO, proof badges, the Michoacan route, the Cenote Cancun Adventure, medallion concepts, and partner pilots. For direct questions, email hola@teocuitlatl.com.";
   }
 
+  function appendLinkedText(node, text) {
+    const pattern = /(https?:\/\/[^\s]+|[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,})/gi;
+    let index = 0;
+    let match;
+
+    while ((match = pattern.exec(text))) {
+      const raw = match[0];
+      const start = match.index;
+      const clean = raw.replace(/[.,!?;:)\]]+$/g, "");
+      const trailing = raw.slice(clean.length);
+
+      if (start > index) {
+        node.append(document.createTextNode(text.slice(index, start)));
+      }
+
+      const link = document.createElement("a");
+      link.textContent = clean;
+      link.href = clean.includes("@") && !clean.startsWith("http") ? `mailto:${clean}` : clean;
+
+      if (link.href.startsWith("http")) {
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+      }
+
+      node.append(link);
+      if (trailing) node.append(document.createTextNode(trailing));
+      index = start + raw.length;
+    }
+
+    if (index < text.length) {
+      node.append(document.createTextNode(text.slice(index)));
+    }
+  }
+
   function createMessage(role, text) {
     const item = document.createElement("div");
     item.className = `mexica-msg ${role}`;
-    item.textContent = text;
+    appendLinkedText(item, text);
     return item;
   }
 
