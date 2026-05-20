@@ -751,6 +751,14 @@ figcaption {
   font-weight: 950;
 }
 
+.privacy-note {
+  max-width: 980px;
+  margin: -10px 0 28px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
 .coin-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -960,6 +968,35 @@ figcaption {
   color: #9ca8a2;
   font-size: 14px;
   line-height: 1.5;
+}
+
+.site-footer a,
+.privacy-note a,
+.privacy-page a {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.privacy-page {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.privacy-page article {
+  padding: 34px 0;
+  border-bottom: 1px solid rgba(247, 242, 230, 0.1);
+}
+
+.privacy-page h2 {
+  margin-bottom: 14px;
+  font-size: clamp(28px, 4vw, 44px);
+}
+
+.privacy-page li {
+  margin-bottom: 10px;
+  color: var(--muted);
+  line-height: 1.55;
 }
 
 @media (max-width: 900px) {

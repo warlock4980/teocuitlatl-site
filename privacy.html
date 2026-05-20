@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Mexica Privacy Notice</title>
+  <meta name="description" content="Privacy notice for the Project Mexica prototype website, medallion poll, chatbot, and partner inquiries.">
+  <link rel="canonical" href="https://teocuitlatl.com/privacy.html">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./chatbot.css">
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="./index.html">
+      <span></span>
+      Project Mexica
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Open navigation menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="site-menu">
+      <a href="./index.html#how">How it works</a>
+      <a href="./index.html#routes">Routes</a>
+      <a href="./gallery.html">Gallery</a>
+      <a href="./partners.html">Partners</a>
+      <a class="mobile-menu-cta" href="mailto:hola@teocuitlatl.com?subject=Project%20Mexica%20Privacy">Contact</a>
+    </nav>
+    <a class="nav-cta" href="mailto:hola@teocuitlatl.com?subject=Project%20Mexica%20Privacy">Contact</a>
+  </header>
+
+  <main>
+    <section class="gallery-hero privacy-page">
+      <p class="eyebrow">Privacy Notice</p>
+      <h1>Simple, limited data collection.</h1>
+      <p class="lede">Project Mexica is a prototype website. We collect only the data needed to operate the gallery poll, respond to messages, and keep the site working.</p>
+    </section>
+
+    <section class="section privacy-page">
+      <article>
+        <h2>Medallion Poll</h2>
+        <p>When you vote in the gallery, your selected medallions are stored in your browser so the page remembers your top three.</p>
+        <p>When the live Neon-backed tally is connected, the poll API may also store:</p>
+        <ul>
+          <li>Your selected medallion IDs.</li>
+          <li>Basic technical request data, such as browser user-agent and referring page.</li>
+          <li>A hashed visitor fingerprint derived from technical request data to reduce duplicate voting.</li>
+          <li>The date and time of the vote.</li>
+        </ul>
+        <p>The poll is meant to measure concept interest, not identify voters personally.</p>
+      </article>
+
+      <article>
+        <h2>Chatbot</h2>
+        <p>The site chatbot is a static guide with prepared responses. It does not require an account and does not ask for seed phrases, wallet secrets, passwords, government IDs, or payment credentials.</p>
+      </article>
+
+      <article>
+        <h2>Email</h2>
+        <p>If you contact Project Mexica by email, the message and your email address are used to reply and manage the inquiry. Do not send private keys, seed phrases, passwords, or sensitive identity documents by email.</p>
+      </article>
+
+      <article>
+        <h2>Hosting Logs</h2>
+        <p>GitHub Pages, Vercel, Neon, and related infrastructure providers may process standard technical logs such as IP address, request time, browser data, and error data to deliver and secure the site.</p>
+      </article>
+
+      <article>
+        <h2>Prototype Status</h2>
+        <p>Project Mexica is a prototype/testnet demonstration. The site does not currently offer financial products, token sales, legal tender, investment contracts, or guaranteed rewards.</p>
+      </article>
+
+      <article>
+        <h2>Contact</h2>
+        <p>For privacy questions, contact <a href="mailto:hola@teocuitlatl.com?subject=Project%20Mexica%20Privacy">hola@teocuitlatl.com</a>.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Project Mexica is a prototype and testnet demonstration. Nothing on this site is an offer to sell securities, investment advice, financial advice, or a promise of returns.</p>
+  </footer>
+  <script src="./chatbot.js"></script>
+  <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const siteMenu = document.querySelector('#site-menu');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      document.body.classList.toggle('menu-open', !isOpen);
+    });
+
+    siteMenu.addEventListener('click', event => {
+      if (event.target.closest('a')) {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        document.body.classList.remove('menu-open');
+      }
+    });
+  </script>
+</body>
+</html>
