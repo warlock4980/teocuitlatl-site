@@ -76,7 +76,7 @@ a {
 .nav {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 3000;
   height: 74px;
   display: flex;
   align-items: center;
@@ -1230,6 +1230,9 @@ figcaption {
 }
 
 .map-shell {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
   overflow: hidden;
   border: 1px solid rgba(247, 242, 230, 0.12);
   border-radius: 8px;
@@ -1270,6 +1273,9 @@ figcaption {
 }
 
 .travel-map {
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
   min-height: 620px;
   background: #d8d2c0;
 }
@@ -1507,7 +1513,7 @@ figcaption {
     top: 74px;
     left: 12px;
     right: 12px;
-    z-index: 20;
+    z-index: 3100;
     display: grid;
     gap: 8px;
     margin: 0;
