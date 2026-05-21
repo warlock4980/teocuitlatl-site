@@ -1322,6 +1322,34 @@ figcaption {
   font-weight: 850;
 }
 
+.map-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.map-actions a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(197, 160, 89, 0.48);
+  border-radius: 999px;
+  background: rgba(197, 160, 89, 0.1);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.map-actions a:hover,
+.map-actions a:focus-visible {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #171106;
+}
+
 .travel-route-grid,
 .admin-grid {
   display: grid;

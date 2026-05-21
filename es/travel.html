@@ -74,10 +74,14 @@
               <div><dt>Uso en prototipo</dt><dd>Descubrimiento de viajes, insignias y planeación de rutas para aliados.</dd></div>
               <div><dt>Futuros servicios</dt><dd>Hoteles, guías, transporte, tours, eSIM y seguros con divulgación clara.</dd></div>
             </dl>
+            <div class="map-actions" aria-label="Abrir México en mapas externos">
+              <a href="https://maps.apple.com/?ll=23.6345,-102.5528&amp;q=Mexico" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=23.6345%2C-102.5528" target="_blank" rel="noopener noreferrer">Google Maps</a>
+            </div>
           </aside>
         </div>
       </div>
-      <p class="map-privacy-note">Los mosaicos del mapa se cargan desde infraestructura pública de OpenStreetMap. Project Mexica no controla esas solicitudes de terceros.</p>
+      <p class="map-privacy-note">Los mosaicos del mapa se cargan desde infraestructura pública de OpenStreetMap. Los botones de Apple Maps y Google Maps abren servicios externos en otra pestaña o app.</p>
     </section>
 
     <section class="section travel-admin">
@@ -198,8 +202,14 @@
       L.polyline(coords, { color: routeColors[badge], weight: 3, opacity: 0.62, dashArray: "8 9" }).addTo(map);
     });
     function selectPlace(place, marker) {
-      detail.innerHTML = `<p class="eyebrow">${place.badge} · ${place.type}</p><h3>${place.name}</h3><p>${place.summary}</p><dl><div><dt>Ruta</dt><dd>${place.route}</dd></div><div><dt>Aeropuerto cercano</dt><dd>${place.airport}</dd></div><div><dt>Uso futuro</dt><dd>Guía editorial, insignia conceptual, enlace de aliado o ruta patrocinada con divulgación clara.</dd></div></dl>`;
+      detail.innerHTML = `<p class="eyebrow">${place.badge} · ${place.type}</p><h3>${place.name}</h3><p>${place.summary}</p><dl><div><dt>Ruta</dt><dd>${place.route}</dd></div><div><dt>Aeropuerto cercano</dt><dd>${place.airport}</dd></div><div><dt>Uso futuro</dt><dd>Guía editorial, insignia conceptual, enlace de aliado o ruta patrocinada con divulgación clara.</dd></div></dl>${mapsActions(place)}`;
       marker.openTooltip();
+    }
+    function mapsActions(place) {
+      const [lat, lng] = place.coords;
+      const appleParams = new URLSearchParams({ ll: `${lat},${lng}`, q: place.name });
+      const googleParams = new URLSearchParams({ api: "1", query: `${lat},${lng}` });
+      return `<div class="map-actions" aria-label="Abrir ${place.name} en mapas externos"><a href="https://maps.apple.com/?${appleParams}" target="_blank" rel="noopener noreferrer">Apple Maps</a><a href="https://www.google.com/maps/search/?${googleParams}" target="_blank" rel="noopener noreferrer">Google Maps</a></div>`;
     }
     document.querySelectorAll("[data-filter]").forEach(button => {
       button.addEventListener("click", () => {

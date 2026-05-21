@@ -89,10 +89,14 @@
                 <dd>Hotel, guide, transport, and tour affiliate links can live here later.</dd>
               </div>
             </dl>
+            <div class="map-actions" aria-label="Open Mexico in external maps">
+              <a href="https://maps.apple.com/?ll=23.6345,-102.5528&amp;q=Mexico" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+              <a href="https://www.google.com/maps/search/?api=1&amp;query=23.6345%2C-102.5528" target="_blank" rel="noopener noreferrer">Google Maps</a>
+            </div>
           </aside>
         </div>
       </div>
-      <p class="map-privacy-note">Map tiles are loaded from OpenStreetMap contributors through public tile infrastructure. Project Mexica does not control those third-party map requests.</p>
+      <p class="map-privacy-note">Map tiles are loaded from OpenStreetMap contributors through public tile infrastructure. Apple Maps and Google Maps buttons open third-party map services in a new tab or app.</p>
     </section>
 
     <section class="section travel-admin">
@@ -504,8 +508,21 @@
             <dd>${place.concept}</dd>
           </div>
         </dl>
+        ${mapsActions(place)}
       `;
       marker.openTooltip();
+    }
+
+    function mapsActions(place) {
+      const [lat, lng] = place.coords;
+      const appleParams = new URLSearchParams({ ll: `${lat},${lng}`, q: place.name });
+      const googleParams = new URLSearchParams({ api: "1", query: `${lat},${lng}` });
+      return `
+        <div class="map-actions" aria-label="Open ${place.name} in external maps">
+          <a href="https://maps.apple.com/?${appleParams}" target="_blank" rel="noopener noreferrer">Apple Maps</a>
+          <a href="https://www.google.com/maps/search/?${googleParams}" target="_blank" rel="noopener noreferrer">Google Maps</a>
+        </div>
+      `;
     }
 
     document.querySelectorAll("[data-filter]").forEach(button => {
