@@ -899,9 +899,11 @@ figcaption {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
+  width: 100%;
 }
 
 .coin-grid article {
+  min-width: 0;
   overflow: hidden;
   border: 1px solid var(--hairline);
   border-radius: 8px;
@@ -925,11 +927,18 @@ figcaption {
 }
 
 .coin-grid img {
+  box-sizing: border-box;
   display: block;
   width: 100%;
+  max-height: 430px;
   aspect-ratio: 1;
-  object-fit: cover;
-  filter: contrast(1.08) saturate(0.88);
+  object-fit: contain;
+  padding: clamp(12px, 2.4vw, 28px);
+  background:
+    radial-gradient(circle at 50% 44%, rgba(247, 226, 176, 0.18), transparent 34%),
+    radial-gradient(circle at 28% 22%, rgba(111, 166, 162, 0.16), transparent 30%),
+    linear-gradient(145deg, #17130c 0%, #0b1110 52%, #050808 100%);
+  filter: contrast(1.06) saturate(0.9);
 }
 
 .coin-grid div {
@@ -1653,6 +1662,17 @@ figcaption {
     align-items: flex-start;
     flex-direction: column;
   }
+
+  .section-head > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .gallery-section .section-head h2 {
+    max-width: 100%;
+    font-size: clamp(36px, 10vw, 48px);
+    line-height: 1.03;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1676,5 +1696,20 @@ figcaption {
   .hero-forge-base {
     bottom: 38px;
     width: min(62%, 270px);
+  }
+
+  .gallery-hero {
+    min-height: auto;
+    padding-top: 96px;
+    padding-bottom: 72px;
+  }
+
+  .gallery-section .section-head h2 {
+    font-size: clamp(34px, 10vw, 42px);
+  }
+
+  .coin-grid img {
+    max-height: none;
+    padding: 14px;
   }
 }

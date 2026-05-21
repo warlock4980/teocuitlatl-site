@@ -37,8 +37,8 @@
       text: "The tip jar is on the medallion gallery page: https://teocuitlatl.com/gallery.html#support It is voluntary creator support only. It is not an investment, token sale, partner payment, or purchase of TOM, TEO, badges, or medallions."
     },
     {
-      keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold"],
-      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlán and Moctezuma joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
+      keys: ["coin", "medallion", "gallery", "vote", "sun", "moon", "silver", "gold", "calendar", "aztec"],
+      text: "The coin art is commemorative concept art. The signature motif is Sun and Moon, with heritage concepts like Tenochtitlán, Moctezuma, and the Mexica Calendar joining the gallery. Vote here: https://teocuitlatl.com/gallery.html"
     },
     {
       keys: ["moctezuma", "tenochtitlan", "tenochtitlán", "heritage"],
@@ -92,8 +92,8 @@
       text: "La propina voluntaria está en la galería: https://teocuitlatl.com/es/gallery.html#support Es apoyo al creador solamente. No es inversión, venta de tokens, pago de socio ni compra de TOM, TEO, insignias o medallones."
     },
     {
-      keys: ["moneda", "medallón", "medallon", "galería", "galeria", "votar", "sol", "luna", "plata", "oro"],
-      text: "El arte de monedas es arte conceptual conmemorativo. La firma visual es Sol y Luna, con conceptos como Tenochtitlán y Moctezuma en la galería. Vota aquí: https://teocuitlatl.com/es/gallery.html"
+      keys: ["moneda", "medallón", "medallon", "galería", "galeria", "votar", "sol", "luna", "plata", "oro", "calendario", "azteca"],
+      text: "El arte de monedas es arte conceptual conmemorativo. La firma visual es Sol y Luna, con conceptos como Tenochtitlán, Moctezuma y el Calendario Mexica en la galería. Vota aquí: https://teocuitlatl.com/es/gallery.html"
     },
     {
       keys: ["juarez", "juárez", "benito", "angel", "ángel", "independencia", "águila", "aguila", "serpiente", "nopal", "bandera"],
