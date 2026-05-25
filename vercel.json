@@ -1,3 +1,15 @@
 {
-  "version": 2
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/genie/$1",
+      "has": [
+        {
+          "type": "host",
+          "value": "genie.teocuitlatl.com"
+        }
+      ]
+    }
+  ]
 }

@@ -1,0 +1,573 @@
+<!-- GENIE — User Guide. Magpie Studios Research Systems. Mexica palette. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GENIE — User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Hanken+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Project Mexica palette */
+    --obsidian:#050808;
+    --surface:#0f1513;
+    --paper:#f7f2e6;
+    --muted:#aeb7af;
+    --jade:#1f5b4a;
+    --gold:#c5a059;
+    --gold-bright:#f7e2b0;
+    --gold-deep:#6f5424;
+    --turquoise:#6fa6a2;
+    --coral:#b86a56;
+
+    --ink:#1a1610;
+    --ink-soft:#5c5648;
+    --hairline:rgba(111,84,36,0.20);
+    --hairline-soft:rgba(111,84,36,0.11);
+
+    --display:"Fraunces",Georgia,serif;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --body:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--body);
+    font-weight:400;
+    line-height:1.65;
+    font-size:17px;
+    letter-spacing:.005em;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* faint heritage grain + warmth */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(120% 80% at 85% -10%, rgba(197,160,89,.10), transparent 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(31,91,74,.07), transparent 55%);
+  }
+  .wrap{position:relative;z-index:1;}
+
+  /* ---------- COVER ---------- */
+  .cover{
+    background:var(--obsidian);
+    color:var(--paper);
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:clamp(28px,6vw,72px);
+    position:relative;overflow:hidden;
+  }
+  .cover::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      radial-gradient(70% 50% at 75% 18%, rgba(197,160,89,.22), transparent 60%),
+      radial-gradient(60% 45% at 15% 95%, rgba(111,166,162,.12), transparent 60%);
+  }
+  .cover > *{position:relative;z-index:1;}
+  .cover-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .kicker{
+    font-family:var(--body);font-weight:500;
+    text-transform:uppercase;letter-spacing:.34em;font-size:11px;
+    color:var(--gold);
+  }
+  .doc-tag{
+    font-family:var(--body);font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--muted);
+  }
+  .monogram{
+    width:96px;height:96px;border-radius:50%;
+    border:1px solid rgba(197,160,89,.55);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-weight:400;font-size:46px;color:var(--gold-bright);
+    margin:clamp(40px,9vw,90px) 0 28px;
+    box-shadow:0 0 0 8px rgba(247,242,230,.025), inset 0 0 30px rgba(197,160,89,.10);
+  }
+  .cover h1{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(64px,16vw,168px);line-height:.92;letter-spacing:-.02em;
+    margin:0;color:var(--paper);
+  }
+  .cover .lede{
+    font-family:var(--serif);font-size:clamp(20px,3.4vw,30px);
+    color:var(--gold-bright);font-style:italic;font-weight:400;
+    margin:22px 0 0;max-width:30ch;line-height:1.3;
+  }
+  .cover-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;}
+  .cover-bottom p{margin:0;font-size:13px;color:var(--muted);max-width:46ch;line-height:1.6;}
+  .edition{font-family:var(--serif);font-size:18px;color:var(--gold);letter-spacing:.02em;}
+
+  /* ---------- PAGE FRAME ---------- */
+  main{
+    max-width:780px;margin:0 auto;
+    padding:clamp(48px,8vw,96px) clamp(22px,5vw,40px) 40px;
+  }
+  section{padding:clamp(40px,7vw,80px) 0;border-top:1px solid var(--hairline-soft);}
+  section:first-of-type{border-top:none;}
+
+  .sec-head{display:flex;align-items:baseline;gap:18px;margin-bottom:6px;}
+  .sec-num{
+    font-family:var(--display);font-weight:400;font-size:15px;color:var(--gold-deep);
+    letter-spacing:.12em;min-width:2.4em;
+  }
+  .sec-eyebrow{
+    text-transform:uppercase;letter-spacing:.28em;font-size:11px;font-weight:600;
+    color:var(--jade);
+  }
+  h2{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(32px,6vw,52px);line-height:1.02;letter-spacing:-.015em;
+    margin:.15em 0 .5em;color:var(--ink);
+  }
+  h3{
+    font-family:var(--display);font-weight:500;
+    font-size:clamp(20px,3.4vw,25px);line-height:1.2;letter-spacing:-.01em;
+    margin:2.2em 0 .5em;color:var(--ink);
+  }
+  .standfirst{
+    font-family:var(--serif);font-size:clamp(20px,3.2vw,26px);font-style:italic;
+    color:var(--gold-deep);line-height:1.32;max-width:34ch;margin:0 0 1.4em;
+  }
+  p{margin:0 0 1.15em;}
+  p.lead{font-size:19px;color:var(--ink);}
+  strong{font-weight:600;color:var(--ink);}
+  em{font-style:italic;}
+  a{color:var(--jade);text-underline-offset:3px;text-decoration-color:var(--hairline);}
+
+  /* ---------- CONTENTS ---------- */
+  .toc{background:transparent;}
+  .toc ol{list-style:none;counter-reset:t;margin:0;padding:0;}
+  .toc li{
+    counter-increment:t;
+    display:flex;align-items:baseline;gap:18px;
+    padding:15px 0;border-bottom:1px solid var(--hairline-soft);
+  }
+  .toc li::before{
+    content:counter(t,decimal-leading-zero);
+    font-family:var(--display);color:var(--gold-deep);font-size:14px;min-width:2.4em;
+  }
+  .toc a{text-decoration:none;color:var(--ink);font-size:19px;font-family:var(--serif);}
+  .toc a:hover{color:var(--jade);}
+  .toc .pg{margin-left:auto;color:var(--ink-soft);font-size:13px;letter-spacing:.1em;}
+
+  /* ---------- CALLOUTS ---------- */
+  .note{
+    border-left:2px solid var(--accent,var(--jade));
+    background:var(--accent-bg,rgba(31,91,74,.06));
+    padding:18px 22px;margin:1.6em 0;border-radius:0 10px 10px 0;
+  }
+  .note .label{
+    text-transform:uppercase;letter-spacing:.2em;font-size:10.5px;font-weight:600;
+    color:var(--accent,var(--jade));margin-bottom:5px;
+  }
+  .note p{margin:0;font-size:15.5px;color:var(--ink);}
+  .note.tip{--accent:var(--turquoise);--accent-bg:rgba(111,166,162,.10);}
+  .note.tip .label{color:#3f7c78;}
+  .note.important{--accent:var(--coral);--accent-bg:rgba(184,106,86,.09);}
+  .note.important .label{color:var(--coral);}
+
+  /* ---------- STEP RITUAL ---------- */
+  .loop{display:grid;gap:0;margin:1.6em 0;}
+  .step{
+    display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;
+    padding:22px 0;border-bottom:1px solid var(--hairline-soft);
+  }
+  .step:last-child{border-bottom:none;}
+  .step .dot{
+    width:44px;height:44px;border-radius:50%;flex:none;
+    border:1px solid var(--hairline);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--display);font-size:19px;color:var(--gold-deep);
+    background:rgba(197,160,89,.06);
+  }
+  .step h4{margin:.1em 0 .3em;font-family:var(--display);font-weight:500;font-size:20px;}
+  .step p{margin:0;font-size:15.5px;color:var(--ink-soft);}
+
+  /* ---------- KNOWN / UNKNOWN ---------- */
+  .ku{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:1.6em 0;}
+  .ku .col{
+    border:1px solid var(--hairline);border-radius:14px;padding:22px 22px 8px;
+    background:rgba(247,242,230,.5);
+  }
+  .ku .col h4{
+    margin:0 0 4px;font-family:var(--body);text-transform:uppercase;letter-spacing:.22em;
+    font-size:12px;font-weight:600;
+  }
+  .ku .known h4{color:var(--jade);}
+  .ku .unknown h4{color:var(--coral);}
+  .ku .tagline{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--ink-soft);margin:0 0 14px;}
+  .ku ul{list-style:none;margin:0;padding:0;}
+  .ku li{padding:8px 0;border-top:1px solid var(--hairline-soft);font-size:15px;display:flex;align-items:center;gap:10px;}
+  .ku li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none;}
+  .ku .unknown li::before{background:var(--coral);}
+
+  /* ---------- PIPELINE ---------- */
+  .pipe{display:flex;flex-wrap:wrap;align-items:stretch;gap:10px;margin:1.6em 0;}
+  .pipe .stage{
+    flex:1 1 120px;border:1px solid var(--hairline);border-radius:12px;
+    padding:16px 14px;background:rgba(247,242,230,.5);position:relative;
+  }
+  .pipe .stage .n{font-family:var(--display);font-size:13px;color:var(--gold-deep);}
+  .pipe .stage .t{font-weight:600;font-size:15px;margin-top:2px;}
+  .pipe .stage .d{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.45;}
+  .pipe .arrow{align-self:center;color:var(--gold);font-size:18px;}
+
+  /* generic feature list */
+  .features{list-style:none;margin:1.3em 0;padding:0;}
+  .features li{
+    padding:16px 0;border-top:1px solid var(--hairline-soft);
+    display:grid;grid-template-columns:160px 1fr;gap:20px;align-items:baseline;
+  }
+  .features li:last-child{border-bottom:1px solid var(--hairline-soft);}
+  .features .term{font-family:var(--display);font-weight:500;font-size:18px;color:var(--ink);}
+  .features .desc{font-size:15.5px;color:var(--ink-soft);}
+
+  /* ---------- COMPLIANCE / FOOTER ---------- */
+  .legal{
+    background:var(--obsidian);color:var(--muted);
+    padding:clamp(40px,7vw,72px) clamp(22px,5vw,40px);
+  }
+  .legal-inner{max-width:780px;margin:0 auto;}
+  .legal .sec-eyebrow{color:var(--gold);}
+  .legal h2{color:var(--paper);}
+  .legal p{font-size:14.5px;line-height:1.7;color:var(--muted);max-width:62ch;}
+  .legal strong{color:var(--gold-bright);}
+  .legal .rule{height:1px;background:rgba(197,160,89,.25);margin:30px 0;}
+  .legal .fine{font-size:12px;color:#7f867f;letter-spacing:.04em;}
+  .colophon{display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;margin-top:8px;}
+
+  @media(max-width:620px){
+    .ku{grid-template-columns:1fr;}
+    .features li{grid-template-columns:1fr;gap:4px;}
+    .pipe .arrow{display:none;}
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print{
+    body{font-size:11pt;background:#fff;}
+    body::before{display:none;}
+    .cover,.legal{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .cover{min-height:auto;page-break-after:always;}
+    section{page-break-inside:avoid;}
+    a{text-decoration:none;}
+  }
+</style>
+
+<div class="wrap">
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <div class="cover-top">
+      <span class="kicker">Magpie Studios &middot; Research Systems</span>
+      <span class="doc-tag">User Guide &middot; Ed. 01</span>
+    </div>
+
+    <div>
+      <div class="monogram">G</div>
+      <h1>GENIE</h1>
+      <p class="lede">Market research, without the noise.</p>
+    </div>
+
+    <div class="cover-bottom">
+      <p>A private cockpit for watchlists, research scenarios, known &amp; unknown maps,
+         and disciplined daily review. Built as research software — not financial advice.</p>
+      <span class="edition">teocuitlatl.com</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ CONTENTS ============ -->
+    <section class="toc" id="contents">
+      <div class="sec-head"><span class="sec-num">—</span><span class="sec-eyebrow">Contents</span></div>
+      <h2>What's inside</h2>
+      <ol>
+        <li><a href="#welcome">Welcome to GENIE</a><span class="pg">A research cockpit</span></li>
+        <li><a href="#before">Before you begin</a><span class="pg">The one idea</span></li>
+        <li><a href="#cockpit">Your cockpit at a glance</a><span class="pg">The five parts</span></li>
+        <li><a href="#watchlist">Building a watchlist</a><span class="pg">Start here</span></li>
+        <li><a href="#loop">The daily loop</a><span class="pg">A ritual</span></li>
+        <li><a href="#map">The known / unknown map</a><span class="pg">Honest confidence</span></li>
+        <li><a href="#scenarios">Working with scenarios</a><span class="pg">Signal vs. certainty</span></li>
+        <li><a href="#paper">Paper-first discipline</a><span class="pg">The lab path</span></li>
+        <li><a href="#journal">Snapshots &amp; the journal</a><span class="pg">Remembering why</span></li>
+        <li><a href="#habits">Good habits</a><span class="pg">Getting the most</span></li>
+        <li><a href="#safety">Safety &amp; important info</a><span class="pg">Please read</span></li>
+      </ol>
+    </section>
+
+    <!-- ============ 1 WELCOME ============ -->
+    <section id="welcome">
+      <div class="sec-head"><span class="sec-num">01</span><span class="sec-eyebrow">Welcome</span></div>
+      <h2>A research cockpit, not a trading bot.</h2>
+      <p class="standfirst">GENIE helps you think clearly about markets. It does not tell you what to buy.</p>
+
+      <p class="lead">Markets don't suffer from too little information. They suffer from too little
+      structure. Price, news, narratives, uncertainty, and emotional pressure arrive faster
+      than any one person can organize.</p>
+
+      <p>GENIE is a private, single-purpose workspace for organizing that flood. It gives you a
+      calm place to hold context, lay out what you actually know, and notice what you're only
+      assuming — so the thinking happens <em>before</em> a decision is ever on the table.</p>
+
+      <div class="note tip">
+        <div class="label">Think of it like this</div>
+        <p>GENIE is to your market thinking what a flight cockpit is to a pilot: instruments,
+        checklists, and a steady view. The judgment stays yours. The instruments just keep you honest.</p>
+      </div>
+    </section>
+
+    <!-- ============ 2 BEFORE YOU BEGIN ============ -->
+    <section id="before">
+      <div class="sec-head"><span class="sec-num">02</span><span class="sec-eyebrow">Before you begin</span></div>
+      <h2>Better decisions start before the trade.</h2>
+
+      <p class="lead">If you remember one idea from this guide, make it this one. The useful
+      question GENIE is built around is not <em>"what should I buy?"</em></p>
+
+      <p>It's three questions, asked in order:</p>
+
+      <ul class="features">
+        <li><span class="term">What do I know?</span><span class="desc">The evidence, context, and constraints you can actually point to.</span></li>
+        <li><span class="term">What don't I know?</span><span class="desc">The events, timing, and risks you're guessing about — named, not hidden.</span></li>
+        <li><span class="term">What would change my mind?</span><span class="desc">The signal that would move you from one view to another.</span></li>
+      </ul>
+
+      <p>Every feature in GENIE exists to make those three questions easier to ask and harder to skip.</p>
+    </section>
+
+    <!-- ============ 3 COCKPIT ============ -->
+    <section id="cockpit">
+      <div class="sec-head"><span class="sec-num">03</span><span class="sec-eyebrow">The interface</span></div>
+      <h2>Your cockpit at a glance.</h2>
+      <p class="standfirst">Five parts. One loop. Everything stays in one calm place.</p>
+
+      <ul class="features">
+        <li><span class="term">Watchlists</span><span class="desc">The handful of things you're actually following — kept short on purpose.</span></li>
+        <li><span class="term">Research scenarios</span><span class="desc">Structured ways to lay out evidence, risk, and uncertainty for a given idea.</span></li>
+        <li><span class="term">Known / unknown map</span><span class="desc">A two-column view that keeps your thesis grounded and your confidence honest.</span></li>
+        <li><span class="term">Review snapshots</span><span class="desc">A record of what you thought, and why, on a given day.</span></li>
+        <li><span class="term">Paper-first paths</span><span class="desc">A disciplined route that keeps aggression in the lab before anywhere near the real world.</span></li>
+      </ul>
+
+      <div class="note">
+        <div class="label">Note</div>
+        <p>GENIE is calm by design. There are no flashing buy signals, no urgency, no "act now."
+        If a screen ever makes you feel rushed, that's your cue to slow down — not the product's cue to speed you up.</p>
+      </div>
+    </section>
+
+    <!-- ============ 4 WATCHLIST ============ -->
+    <section id="watchlist">
+      <div class="sec-head"><span class="sec-num">04</span><span class="sec-eyebrow">Getting started</span></div>
+      <h2>Build a watchlist.</h2>
+
+      <p class="lead">Start small. A watchlist is not a portfolio and it isn't a wish list —
+      it's the short set of things you're willing to pay real attention to.</p>
+
+      <h3>How to set one up</h3>
+      <div class="loop">
+        <div class="step"><div class="dot">1</div><div><h4>Add only what you'll review</h4><p>If you won't look at it this week, it doesn't belong on the list yet. Restraint is the feature.</p></div></div>
+        <div class="step"><div class="dot">2</div><div><h4>Write one line on why</h4><p>For each item, note the single reason it's worth watching. If you can't, that's useful information.</p></div></div>
+        <div class="step"><div class="dot">3</div><div><h4>Set a cadence</h4><p>Decide how often you'll review — daily, weekly. GENIE is built to reward a steady rhythm over a frantic one.</p></div></div>
+      </div>
+
+      <div class="note tip">
+        <div class="label">Tip</div>
+        <p>A good watchlist is short enough to read in a single calm sitting. If yours has grown
+        past that, prune it before you add anything new.</p>
+      </div>
+    </section>
+
+    <!-- ============ 5 DAILY LOOP ============ -->
+    <section id="loop">
+      <div class="sec-head"><span class="sec-num">05</span><span class="sec-eyebrow">The core habit</span></div>
+      <h2>The daily loop.</h2>
+      <p class="standfirst">A ritual for market thinking — repeated practice, the same five moves, every day.</p>
+
+      <div class="loop">
+        <div class="step"><div class="dot">I</div><div><h4>Track</h4><p>Look at what's on your watchlist. Note what moved and what didn't — without reacting yet.</p></div></div>
+        <div class="step"><div class="dot">II</div><div><h4>Review</h4><p>Re-read your earlier notes and snapshots. What's still true? What's been quietly proven wrong?</p></div></div>
+        <div class="step"><div class="dot">III</div><div><h4>Question</h4><p>Ask the three questions: what you know, what you don't, and what would change your mind.</p></div></div>
+        <div class="step"><div class="dot">IV</div><div><h4>Record</h4><p>Write down today's view and the reasons behind it. Brief is fine — honest is the point.</p></div></div>
+        <div class="step"><div class="dot">V</div><div><h4>Return</h4><p>Close the cockpit. Come back tomorrow with context already in place and a cleaner mind.</p></div></div>
+      </div>
+
+      <p>The loop is the product. Each pass is small; the compounding is the value. Over weeks,
+      it leaves you with a written record of how your thinking actually evolved.</p>
+    </section>
+
+    <!-- ============ 6 KNOWN / UNKNOWN ============ -->
+    <section id="map">
+      <div class="sec-head"><span class="sec-num">06</span><span class="sec-eyebrow">Honest confidence</span></div>
+      <h2>The known / unknown map.</h2>
+      <p class="standfirst">The map matters. Knowns keep the thesis grounded. Unknowns keep confidence honest.</p>
+
+      <p>For any idea you're researching, GENIE asks you to sort what you have into two columns.
+      Seeing them side by side is the whole point — it makes overconfidence visible.</p>
+
+      <div class="ku">
+        <div class="col known">
+          <h4>Known</h4>
+          <p class="tagline">reviewed &middot; recorded &middot; watched</p>
+          <ul>
+            <li>Evidence</li>
+            <li>Context</li>
+            <li>Constraints</li>
+          </ul>
+        </div>
+        <div class="col unknown">
+          <h4>Unknown</h4>
+          <p class="tagline">named &middot; not guessed</p>
+          <ul>
+            <li>Events</li>
+            <li>Timing</li>
+            <li>Thesis risk</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="note important">
+        <div class="label">Important</div>
+        <p>An empty Unknown column is a warning sign, not a green light. If you can't name a single
+        thing you don't know, you've stopped looking — go back and find it.</p>
+      </div>
+    </section>
+
+    <!-- ============ 7 SCENARIOS ============ -->
+    <section id="scenarios">
+      <div class="sec-head"><span class="sec-num">07</span><span class="sec-eyebrow">Research scenarios</span></div>
+      <h2>Signal is not certainty.</h2>
+
+      <p class="lead">A scenario is a structured way to review evidence, risk, and uncertainty
+      for one idea. It is a thinking tool — nothing more.</p>
+
+      <p>Each scenario walks the same path so your reviews stay comparable over time:</p>
+
+      <ul class="features">
+        <li><span class="term">Scenario</span><span class="desc">The idea or question you're examining, stated plainly.</span></li>
+        <li><span class="term">Evidence</span><span class="desc">What supports it, with the source kept attached.</span></li>
+        <li><span class="term">Risk</span><span class="desc">What could go wrong, and how much it would matter.</span></li>
+        <li><span class="term">Unknowns</span><span class="desc">The open questions, pulled straight from your map.</span></li>
+        <li><span class="term">Next review</span><span class="desc">When you'll look again — because a scenario is never "done."</span></li>
+      </ul>
+
+      <div class="note important">
+        <div class="label">Important</div>
+        <p>Scenarios are <strong>not instructions, not advice, and not guarantees.</strong>
+        They help you review what's in front of you. They never tell you what to do about it.</p>
+      </div>
+    </section>
+
+    <!-- ============ 8 PAPER FIRST ============ -->
+    <section id="paper">
+      <div class="sec-head"><span class="sec-num">08</span><span class="sec-eyebrow">Discipline</span></div>
+      <h2>Aggression belongs in the lab first.</h2>
+      <p class="standfirst">Validation before action. Ideas earn their way forward — one careful step at a time.</p>
+
+      <p>GENIE keeps research, testing, and any real-world step clearly separated. The point of
+      the path is friction: nothing skips ahead, and every stage has to hold up before the next one opens.</p>
+
+      <div class="pipe">
+        <div class="stage"><div class="n">01</div><div class="t">Research</div><div class="d">Read, map, and question the idea.</div></div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage"><div class="n">02</div><div class="t">Lab</div><div class="d">Explore the idea in a sandbox, with no stakes.</div></div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage"><div class="n">03</div><div class="t">Paper</div><div class="d">Test on paper, where being wrong costs nothing.</div></div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage"><div class="n">04</div><div class="t">Micro</div><div class="d">A tiny, deliberate real-world check — if at all.</div></div>
+        <div class="arrow">&rarr;</div>
+        <div class="stage"><div class="n">05</div><div class="t">Review</div><div class="d">Private strategy review, always looping back.</div></div>
+      </div>
+
+      <p>The public version of this path is simple: <strong>validate before you act.</strong>
+      That principle is the whole point, and it's enough to use GENIE well.</p>
+    </section>
+
+    <!-- ============ 9 JOURNAL ============ -->
+    <section id="journal">
+      <div class="sec-head"><span class="sec-num">09</span><span class="sec-eyebrow">Memory</span></div>
+      <h2>Snapshots &amp; the decision journal.</h2>
+
+      <p class="lead">The hardest thing to remember later is <em>why</em> you thought what you thought.
+      GENIE solves this by making you write it down at the moment, not after.</p>
+
+      <h3>Review snapshots</h3>
+      <p>A snapshot captures your view on a given day — the evidence, the unknowns, and your
+      confidence — frozen exactly as it was. Weeks later you can read your past self honestly,
+      without the comfort of hindsight rewriting the story.</p>
+
+      <h3>The decision journal</h3>
+      <p>The journal is the running thread of those snapshots. It turns scattered notes into a
+      record of how your thinking changed and what actually moved it. Over time, this is where
+      your judgment quietly sharpens.</p>
+
+      <div class="note tip">
+        <div class="label">Tip</div>
+        <p>Write the snapshot <em>before</em> you know how things turned out. A note written in
+        the fog is worth ten written in hindsight.</p>
+      </div>
+    </section>
+
+    <!-- ============ 10 HABITS ============ -->
+    <section id="habits">
+      <div class="sec-head"><span class="sec-num">10</span><span class="sec-eyebrow">Getting the most from GENIE</span></div>
+      <h2>Good habits.</h2>
+
+      <ul class="features">
+        <li><span class="term">Keep it small</span><span class="desc">A short watchlist reviewed well beats a long one reviewed never.</span></li>
+        <li><span class="term">Show up daily</span><span class="desc">The loop compounds. Five quiet minutes a day outperforms an occasional marathon.</span></li>
+        <li><span class="term">Name the unknowns</span><span class="desc">Confidence you can't question isn't confidence — it's a blind spot.</span></li>
+        <li><span class="term">Write before you know</span><span class="desc">Record your reasoning while the outcome is still uncertain.</span></li>
+        <li><span class="term">Let the lab be aggressive</span><span class="desc">Take big swings on paper. Stay humble everywhere it counts.</span></li>
+        <li><span class="term">Treat AI as the scribe</span><span class="desc">The workflow is the product. AI helps you think — it doesn't decide for you.</span></li>
+      </ul>
+
+      <p>AI is not the product. The workflow around it is. The durable advantage GENIE offers is a
+      system that makes your judgment sharper, calmer, and more accountable — not a machine that
+      replaces it.</p>
+    </section>
+
+    <!-- ============ 11 SAFETY (intro) ============ -->
+    <section id="safety">
+      <div class="sec-head"><span class="sec-num">11</span><span class="sec-eyebrow">Please read</span></div>
+      <h2>Safety &amp; important information.</h2>
+      <p class="standfirst">GENIE is research software. It helps you think — it does not manage money or make promises.</p>
+      <p>The full notice is on the page that follows. Please read it before relying on GENIE for anything that matters.</p>
+    </section>
+
+  </main>
+
+  <!-- ============ LEGAL / COMPLIANCE ============ -->
+  <footer class="legal">
+    <div class="legal-inner">
+      <div class="sec-head"><span class="sec-num" style="color:var(--gold-deep)">—</span><span class="sec-eyebrow">Status &amp; disclosures</span></div>
+      <h2>In active development.</h2>
+
+      <p>GENIE is built as research software by Magpie Studios Research Systems. It is a private
+      cockpit for organizing market research and review.</p>
+
+      <p><strong>It is not financial advice.</strong> Scenarios, maps, watchlists, and snapshots are
+      structured ways to review information. They are not recommendations, instructions, or guarantees,
+      and nothing in GENIE should be treated as a suggestion to buy, sell, or hold any asset.</p>
+
+      <p><strong>There are no guarantees.</strong> Markets involve risk, including the possible loss of
+      principal. Past behaviour, paper results, and research scenarios do not predict future outcomes.
+      You are solely responsible for your own decisions, and you should consider seeking advice from a
+      qualified, licensed professional.</p>
+
+      <p>Public release language is kept deliberately high-level to protect the underlying engine.
+      This guide describes how to use GENIE, not how it works internally.</p>
+
+      <div class="rule"></div>
+      <div class="colophon">
+        <span class="fine">GENIE — User Guide, Edition 01 &middot; 2026</span>
+        <span class="fine">Magpie Studios Research Systems &middot; teocuitlatl.com</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
